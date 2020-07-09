@@ -7,7 +7,7 @@ import (
 	"shadowDemo/APIServer/vo"
 	"shadowDemo/model/do"
 	"shadowDemo/service"
-	"shadowDemo/shadow-framework/utils"
+	"shadowDemo/zframework/utils"
 
 	"github.com/gin-gonic/gin"
 )

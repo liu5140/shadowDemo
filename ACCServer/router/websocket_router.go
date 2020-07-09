@@ -5,7 +5,7 @@ import (
 	"shadowDemo/middleware"
 	"shadowDemo/service"
 
-	"shadowDemo/shadow-framework/security"
+	"shadowDemo/zframework/security"
 
 	"github.com/gin-gonic/gin"
 )

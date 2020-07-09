@@ -12,10 +12,10 @@ import (
 	"shadowDemo/middleware"
 	"shadowDemo/model/do"
 	"shadowDemo/service"
-	modelc "shadowDemo/shadow-framework/model"
-	"shadowDemo/shadow-framework/server"
+	modelc "shadowDemo/zframework/model"
+	"shadowDemo/zframework/server"
 
-	"shadowDemo/shadow-framework/utils"
+	"shadowDemo/zframework/utils"
 
 	"github.com/gin-gonic/gin"
 	"github.com/nicksnyder/go-i18n/i18n/language"

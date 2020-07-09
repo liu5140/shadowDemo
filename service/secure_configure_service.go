@@ -3,8 +3,8 @@ package service
 import (
 	"errors"
 
-	"shadowDemo/shadow-framework/credis"
-	"shadowDemo/shadow-framework/utils/encrypt"
+	"shadowDemo/zframework/credis"
+	"shadowDemo/zframework/utils/encrypt"
 
 	"github.com/gomodule/redigo/redis"
 )

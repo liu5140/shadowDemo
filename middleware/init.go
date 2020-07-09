@@ -2,9 +2,9 @@ package middleware
 
 import (
 	"shadowDemo/model"
-	modelc "shadowDemo/shadow-framework/model"
+	modelc "shadowDemo/zframework/model"
 
-	"shadowDemo/shadow-framework/logger"
+	"shadowDemo/zframework/logger"
 )
 
 const (

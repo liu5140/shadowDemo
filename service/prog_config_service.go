@@ -5,8 +5,8 @@ import (
 	"shadowDemo/model"
 	"shadowDemo/model/dao"
 	"shadowDemo/model/do"
-	"shadowDemo/shadow-framework/credis"
-	modelc "shadowDemo/shadow-framework/model"
+	"shadowDemo/zframework/credis"
+	modelc "shadowDemo/zframework/model"
 
 	"github.com/gomodule/redigo/redis"
 )

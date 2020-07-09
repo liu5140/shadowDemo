@@ -2,7 +2,7 @@ package model
 
 import (
 	"shadowDemo/model/dao"
-	"shadowDemo/shadow-framework/datasource"
+	"shadowDemo/zframework/datasource"
 )
 
 type Model struct {

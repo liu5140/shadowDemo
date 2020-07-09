@@ -5,7 +5,7 @@ import (
 	"crypto/rand"
 	"math/big"
 	"shadowDemo/model"
-	"shadowDemo/shadow-framework/idgenerator"
+	"shadowDemo/zframework/idgenerator"
 )
 
 func GenAdminID() int64 {

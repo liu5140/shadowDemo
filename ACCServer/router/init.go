@@ -2,15 +2,16 @@ package router
 
 import (
 	"errors"
+	"net/http"
+	"shadowDemo/ACCServer/router/vo"
+	"shadowDemo/service"
+	"shadowDemo/zframework/logger"
+	"shadowDemo/zframework/security"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
-	"shadowDemo/ACCServer/router/vo"
-	"shadowDemo/shadow-framework/security"
 	"github.com/nicksnyder/go-i18n/i18n"
-	"net/http"
-	"shadowDemo/service"
-	"shadowDemo/shadow-framework/logger"
-	"strconv"
 )
 
 var Log *logger.Logger
@@ -33,7 +34,7 @@ const (
 func init() {
 	Log = logger.InitLog()
 	Log.Infoln("注册表结构到数据库")
-//	model.InitialModels()
+	//	model.InitialModels()
 	Log.Infoln("登录方法注册")
 	security.RegisterUserDetailService(security.USER_DETAILS_SERVICE, service.PlayerUserDetailService)
 }

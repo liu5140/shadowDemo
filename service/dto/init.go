@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"shadowDemo/shadow-framework/logger"
+	"shadowDemo/zframework/logger"
 )
 
 var (

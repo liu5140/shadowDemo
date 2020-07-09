@@ -1,7 +1,7 @@
 package vo
 
 import (
-	"shadowDemo/shadow-framework/logger"
+	"shadowDemo/zframework/logger"
 
 	validator "gopkg.in/go-playground/validator.v9"
 )

@@ -4,9 +4,9 @@ import (
 	"shadowDemo/model"
 	"shadowDemo/model/do"
 
-	shadowsecurity "shadowDemo/shadow-framework/security"
-	"shadowDemo/shadow-framework/utils"
-	"shadowDemo/shadow-framework/utils/encrypt"
+	shadowsecurity "shadowDemo/zframework/security"
+	"shadowDemo/zframework/utils"
+	"shadowDemo/zframework/utils/encrypt"
 )
 
 type MerchantService struct {

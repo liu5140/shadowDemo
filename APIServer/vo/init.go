@@ -1,6 +1,6 @@
 package vo
 
-import "shadowDemo/shadow-framework/logger"
+import "shadowDemo/zframework/logger"
 
 var Log *logger.Logger
 

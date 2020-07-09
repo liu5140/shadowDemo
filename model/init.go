@@ -1,6 +1,6 @@
 package model
 
-import "shadowDemo/shadow-framework/logger"
+import "shadowDemo/zframework/logger"
 
 var Log *logger.Logger
 
@@ -10,9 +10,9 @@ func init() {
 
 // swagger:model
 type (
-	Sex          int
-	UserType     int
-	YesOrNo      int
+	Sex      int
+	UserType int
+	YesOrNo  int
 )
 
 type IEnum interface {
@@ -22,7 +22,6 @@ type IEnum interface {
 func init() {
 	Log = logger.InitLog()
 }
-
 
 const (
 	_   YesOrNo = iota
@@ -49,5 +48,3 @@ const (
 	UserTypePlayer              //玩家	1
 	UserTypeMockPlayer          //虚拟玩家	2
 )
-
-

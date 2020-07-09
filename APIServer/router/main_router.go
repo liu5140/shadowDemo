@@ -13,8 +13,8 @@ package router
 import (
 	"net/http"
 	"shadowDemo/APIServer/apimiddleware"
-	"shadowDemo/shadow-framework/middleware/concurrentlimit"
-	"shadowDemo/shadow-framework/server"
+	"shadowDemo/zframework/middleware/concurrentlimit"
+	"shadowDemo/zframework/server"
 
 	"github.com/gin-gonic/gin"
 )

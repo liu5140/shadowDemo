@@ -3,7 +3,7 @@ package do
 import (
 	"time"
 
-	"shadowDemo/shadow-framework/model"
+	"shadowDemo/zframework/model"
 )
 
 // sagger:model

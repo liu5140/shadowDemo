@@ -5,11 +5,11 @@ import (
 	"shadowDemo/model"
 	"shadowDemo/model/dao"
 	"shadowDemo/model/do"
-	"shadowDemo/shadow-framework/datasource"
-	modelc "shadowDemo/shadow-framework/model"
+	"shadowDemo/zframework/datasource"
+	modelc "shadowDemo/zframework/model"
 	"time"
 
-	shadowsecurity "shadowDemo/shadow-framework/security"
+	shadowsecurity "shadowDemo/zframework/security"
 )
 
 type PlayerService struct {

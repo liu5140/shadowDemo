@@ -2,7 +2,7 @@ package dao
 
 import (
 	"shadowDemo/model/do"
-	"shadowDemo/shadow-framework/model"
+	"shadowDemo/zframework/model"
 	"time"
 )
 

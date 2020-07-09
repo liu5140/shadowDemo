@@ -3,8 +3,9 @@ package dao
 import (
 	"errors"
 	"shadowDemo/model/do"
-	"shadowDemo/shadow-framework/utils"
+	"shadowDemo/zframework/utils"
 	"sync"
+
 	"github.com/jinzhu/gorm"
 )
 

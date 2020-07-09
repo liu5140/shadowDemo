@@ -92,10 +92,10 @@ e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
  (security.casbinModelFilePath:casbin_enforcer.go:44)
 [90m[2020-07-09 12:40:33.812][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
-[90m[2020-07-09 12:40:33.813][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:40:33.813][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:40:33][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
-[90m[2020-07-09 12:40:33.815][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:40:33.815][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:40:33][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
 [90m[2020-07-09 12:41:11.412][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
@@ -197,10 +197,10 @@ e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
  (security.casbinModelFilePath:casbin_enforcer.go:44)
 [90m[2020-07-09 12:41:12.168][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
-[90m[2020-07-09 12:41:12.170][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:41:12.170][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:41:12][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
-[90m[2020-07-09 12:41:12.171][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:41:12.171][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:41:12][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
 [90m[2020-07-09 12:52:30.200][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
@@ -302,10 +302,10 @@ e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
  (security.casbinModelFilePath:casbin_enforcer.go:44)
 [90m[2020-07-09 12:52:30.940][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
-[90m[2020-07-09 12:52:30.941][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:52:30.941][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:52:30][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
-[90m[2020-07-09 12:52:30.943][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:52:30.943][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:52:30][0m [36;1m[0.99ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
 [90m[2020-07-09 12:52:34.824][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
@@ -407,10 +407,10 @@ e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
  (security.casbinModelFilePath:casbin_enforcer.go:44)
 [90m[2020-07-09 12:52:35.622][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
-[90m[2020-07-09 12:52:35.642][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:52:35.642][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:52:35][0m [36;1m[1.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
-[90m[2020-07-09 12:52:35.645][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:52:35.645][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:52:35][0m [36;1m[0.99ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
 [90m[2020-07-09 12:52:55.296][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
@@ -512,9 +512,431 @@ e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
 m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
  (security.casbinModelFilePath:casbin_enforcer.go:44)
 [90m[2020-07-09 12:52:56.066][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
-[90m[2020-07-09 12:52:56.067][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:52:56.067][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:52:56][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
-[90m[2020-07-09 12:52:56.068][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/security/adapter/casbin_adapter.go:116)[0m
+[90m[2020-07-09 12:52:56.068][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
 [33m[2020-07-09 12:52:56][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:56:26.513][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
+[90m[2020-07-09 12:56:26.526][0m [32m INFO[0m ======初始化server.json========  (server.init.0:init.go:23)
+[90m[2020-07-09 12:56:26.527][0m [32m INFO[0m Server configure{
+    "ServerName": "ShdowDemo",
+    "Platform": "linux",
+    "BuildVersion":"v.12",
+    "Node": 1,
+    "DataSource": [
+        {
+            "Username": "root",
+            "Password": "1234",
+            "URL": "root:1234@tcp(127.0.0.1:3306)/shadow?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai",
+            "Driver": "mysql",
+            "IdlePoolSize": 30,
+            "MaxPoolSize": 200,
+            "MaxLifeTime": 60,
+            "SqlDebug": 1,
+            "AutoCreate":true
+        }
+    ],
+    "RedisSource": {
+        "Password": "",
+        "Host": "127.0.0.1",
+        "Port": ":6379",
+        "DB": "0",
+        "MaxIdle": 30,
+        "MaxActive": 100,
+        "IdleTimeout": 60
+    },
+    "AdminServer": {
+        "Host": "http://localhost:8031",
+        "Port": ":8031",
+        "ContextPath": "/acc"
+    },
+    "PlayerServer": {
+        "Host": "http://localhost:8030",
+        "Port": ":8030",
+        "ContextPath": "/api/v1"
+    },
+    "AlossServer": {
+        "AccesskeyID": "",
+        "AccesskeySecret": "",
+        "BucketName": "destest",
+        "EndPoint": ""
+    },
+    "StmpServer": {
+        "SendEmailAccount" : "",
+        "Host": "",
+        "Port": 587,
+        "Username": "",
+        "Password": ""
+    }
+} (server.LoadWithFile:server_configure_manager.go:48)
+[90m[2020-07-09 12:56:26.548][0m [34mDEBUG[0m TServerConfigure [34mNode[0m=1 [34mPlatform[0m=linux [34mServerName[0m=ShdowDemo [34m~LineNum[0m= (server.newServerConfigure:server_configure_manager.go:32)
+[90m[2020-07-09 12:56:26.549][0m [32m INFO[0m ======加载数据库配置=========  (server.init.0:init.go:25)
+[90m[2020-07-09 12:56:26.549][0m [32m INFO[0m ======加载redis配置========  (server.init.0:init.go:27)
+[90m[2020-07-09 12:56:26.549][0m [32m INFO[0m ======加载阿里oss配置=======  (server.init.0:init.go:29)
+[90m[2020-07-09 12:56:26.554][0m [32m INFO[0m AnonymousAuthenticationProvider init  (security.init.0:init.go:27)
+[90m[2020-07-09 12:56:26.561][0m [32m INFO[0m CasbinAuthenticationProvider init  (security.init.0:init.go:30)
+[90m[2020-07-09 12:56:26.562][0m [32m INFO[0m DaoAuthenticationProvider init  (security.init.0:init.go:33)
+[90m[2020-07-09 12:56:26.562][0m [32m INFO[0m PasswordEncoder init  (security.init.0:init.go:36)
+[90m[2020-07-09 12:56:26.563][0m [32m INFO[0m ProviderManager init  (security.init.0:init.go:39)
+[90m[2020-07-09 12:56:26.563][0m [32m INFO[0m CasbinAuthenticationRequestResolver init (security.init.0:init.go:42)
+[90m[2020-07-09 12:56:26.563][0m [32m INFO[0m UsernamePasswordResolver init (security.init.0:init.go:45)
+[90m[2020-07-09 12:56:26.564][0m [32m INFO[0m IDGenerator init  (idgenerator.init.0:init.go:14)
+[90m[2020-07-09 12:56:26.564][0m [32m INFO[0m concurrentlimit init (concurrentlimit.init.0:init.go:13)
+[90m[2020-07-09 12:56:26.564][0m [32m INFO[0m I18nResolver init (i18nmiddleware.init.0:init.go:15)
+[90m[2020-07-09 12:56:26.565][0m [32m INFO[0m session middleware init (sessionmiddleware.init.0:init.go:16)
+[90m[2020-07-09 12:56:26.565][0m [32m INFO[0m securitymiddleware middleware init (securitymiddleware.init.0:init.go:13)
+[90m[2020-07-09 12:56:26.570][0m [32m INFO[0m 注册表结构到数据库  (router.init.0:init.go:36)
+[90m[2020-07-09 12:56:26.578][0m [32m INFO[0m 登录方法注册  (router.init.0:init.go:38)
+[90m[2020-07-09 12:56:26.579][0m [32m INFO[0m 主数据库初始化  (main.main:main.go:33)
+[90m[2020-07-09 12:56:26.579][0m [32m INFO[0m 注册表  (main.main:main.go:35)
+[90m[2020-07-09 12:56:26.580][0m [32m INFO[0m redis 初始化  (main.main:main.go:39)
+[90m[2020-07-09 12:56:26.580][0m [32m INFO[0m model 初始化  (main.main:main.go:42)
+[90m[2020-07-09 12:56:27.415][0m [34mDEBUG[0m create a new db connetion [34mdb[0m=&{RWMutex:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:0 readerWait:0} Value:<nil> Error:<nil> RowsAffected:0 db:0xc00021a0c0 blockGlobalUpdate:false logMode:2 logger:{} search:0xc00058c160 values:{mu:{state:0 sema:0} read:{v:{m:map[gorm:table_options:0xc00050a010] amended:false}} dirty:map[] misses:0} parent:0xc000448000 callbacks:<nil> dialect:0xc0002a6020 singularTable:false nowFuncOverride:<nil>} [34m~LineNum[0m= (datasource.(*TGormDataSourceManager).openConn:datasource_manager_impl.go:187)
+[90m[2020-07-09 12:56:27.416][0m [32m INFO[0m service 初始化  (main.main:main.go:45)
+[90m[2020-07-09 12:56:27.416][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/model/dao/prog_config_dao.go:45)[0m
+[33m[2020-07-09 12:56:27][0m [36;1m[0.00ms][0m SELECT * FROM `prog_config`  WHERE (`prog_config`.`disabled` = true) 
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:56:27.417][0m [32m INFO[0m ####################################################### (main.main:main.go:50)
+[90m[2020-07-09 12:56:27.425][0m [32m INFO[0m ###### v.12 ###### (main.main:main.go:51)
+[90m[2020-07-09 12:56:27.425][0m [32m INFO[0m ####################################################### (main.main:main.go:52)
+[90m[2020-07-09 12:56:27.427][0m [32m INFO[0m rbac_model.conf[request_definition]
+r = sub, dom, obj, act
+
+[policy_definition]
+p = sub, dom, obj, act, eft
+
+[role_definition]
+g = _, _, _
+
+[policy_effect]
+e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
+
+[matchers]
+m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
+ (security.casbinModelFilePath:casbin_enforcer.go:44)
+[90m[2020-07-09 12:56:27.428][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
+[90m[2020-07-09 12:56:27.429][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:56:27][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:56:27.430][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:56:27][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:56:34.415][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
+[90m[2020-07-09 12:56:34.428][0m [32m INFO[0m ======初始化server.json========  (server.init.0:init.go:23)
+[90m[2020-07-09 12:56:34.435][0m [32m INFO[0m Server configure{
+    "ServerName": "ShdowDemo",
+    "Platform": "linux",
+    "BuildVersion":"v.12",
+    "Node": 1,
+    "DataSource": [
+        {
+            "Username": "root",
+            "Password": "1234",
+            "URL": "root:1234@tcp(127.0.0.1:3306)/shadow?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai",
+            "Driver": "mysql",
+            "IdlePoolSize": 30,
+            "MaxPoolSize": 200,
+            "MaxLifeTime": 60,
+            "SqlDebug": 1,
+            "AutoCreate":true
+        }
+    ],
+    "RedisSource": {
+        "Password": "",
+        "Host": "127.0.0.1",
+        "Port": ":6379",
+        "DB": "0",
+        "MaxIdle": 30,
+        "MaxActive": 100,
+        "IdleTimeout": 60
+    },
+    "AdminServer": {
+        "Host": "http://localhost:8031",
+        "Port": ":8031",
+        "ContextPath": "/acc"
+    },
+    "PlayerServer": {
+        "Host": "http://localhost:8030",
+        "Port": ":8030",
+        "ContextPath": "/api/v1"
+    },
+    "AlossServer": {
+        "AccesskeyID": "",
+        "AccesskeySecret": "",
+        "BucketName": "destest",
+        "EndPoint": ""
+    },
+    "StmpServer": {
+        "SendEmailAccount" : "",
+        "Host": "",
+        "Port": 587,
+        "Username": "",
+        "Password": ""
+    }
+} (server.LoadWithFile:server_configure_manager.go:48)
+[90m[2020-07-09 12:56:34.441][0m [34mDEBUG[0m TServerConfigure [34mNode[0m=1 [34mPlatform[0m=linux [34mServerName[0m=ShdowDemo [34m~LineNum[0m= (server.newServerConfigure:server_configure_manager.go:32)
+[90m[2020-07-09 12:56:34.441][0m [32m INFO[0m ======加载数据库配置=========  (server.init.0:init.go:25)
+[90m[2020-07-09 12:56:34.441][0m [32m INFO[0m ======加载redis配置========  (server.init.0:init.go:27)
+[90m[2020-07-09 12:56:34.441][0m [32m INFO[0m ======加载阿里oss配置=======  (server.init.0:init.go:29)
+[90m[2020-07-09 12:56:34.444][0m [32m INFO[0m AnonymousAuthenticationProvider init  (security.init.0:init.go:27)
+[90m[2020-07-09 12:56:34.450][0m [32m INFO[0m CasbinAuthenticationProvider init  (security.init.0:init.go:30)
+[90m[2020-07-09 12:56:34.451][0m [32m INFO[0m DaoAuthenticationProvider init  (security.init.0:init.go:33)
+[90m[2020-07-09 12:56:34.452][0m [32m INFO[0m PasswordEncoder init  (security.init.0:init.go:36)
+[90m[2020-07-09 12:56:34.452][0m [32m INFO[0m ProviderManager init  (security.init.0:init.go:39)
+[90m[2020-07-09 12:56:34.452][0m [32m INFO[0m CasbinAuthenticationRequestResolver init (security.init.0:init.go:42)
+[90m[2020-07-09 12:56:34.453][0m [32m INFO[0m UsernamePasswordResolver init (security.init.0:init.go:45)
+[90m[2020-07-09 12:56:34.454][0m [32m INFO[0m IDGenerator init  (idgenerator.init.0:init.go:14)
+[90m[2020-07-09 12:56:34.455][0m [32m INFO[0m concurrentlimit init (concurrentlimit.init.0:init.go:13)
+[90m[2020-07-09 12:56:34.455][0m [32m INFO[0m I18nResolver init (i18nmiddleware.init.0:init.go:15)
+[90m[2020-07-09 12:56:34.455][0m [32m INFO[0m session middleware init (sessionmiddleware.init.0:init.go:16)
+[90m[2020-07-09 12:56:34.456][0m [32m INFO[0m securitymiddleware middleware init (securitymiddleware.init.0:init.go:13)
+[90m[2020-07-09 12:56:34.459][0m [32m INFO[0m 注册表结构到数据库  (router.init.0:init.go:36)
+[90m[2020-07-09 12:56:34.459][0m [32m INFO[0m 登录方法注册  (router.init.0:init.go:38)
+[90m[2020-07-09 12:56:34.459][0m [32m INFO[0m 主数据库初始化  (main.main:main.go:33)
+[90m[2020-07-09 12:56:34.460][0m [32m INFO[0m 注册表  (main.main:main.go:35)
+[90m[2020-07-09 12:56:34.460][0m [32m INFO[0m redis 初始化  (main.main:main.go:39)
+[90m[2020-07-09 12:56:34.460][0m [32m INFO[0m model 初始化  (main.main:main.go:42)
+[90m[2020-07-09 12:56:35.250][0m [34mDEBUG[0m create a new db connetion [34mdb[0m=&{RWMutex:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:0 readerWait:0} Value:<nil> Error:<nil> RowsAffected:0 db:0xc00019a0c0 blockGlobalUpdate:false logMode:2 logger:{} search:0xc00054a000 values:{mu:{state:0 sema:0} read:{v:{m:map[gorm:table_options:0xc000520018] amended:false}} dirty:map[] misses:0} parent:0xc000326820 callbacks:<nil> dialect:0xc00029e020 singularTable:false nowFuncOverride:<nil>} [34m~LineNum[0m= (datasource.(*TGormDataSourceManager).openConn:datasource_manager_impl.go:187)
+[90m[2020-07-09 12:56:35.251][0m [32m INFO[0m service 初始化  (main.main:main.go:45)
+[90m[2020-07-09 12:56:35.261][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/model/dao/prog_config_dao.go:45)[0m
+[33m[2020-07-09 12:56:35][0m [36;1m[0.97ms][0m SELECT * FROM `prog_config`  WHERE (`prog_config`.`disabled` = true) 
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:56:35.263][0m [32m INFO[0m ####################################################### (main.main:main.go:50)
+[90m[2020-07-09 12:56:35.264][0m [32m INFO[0m ###### v.12 ###### (main.main:main.go:51)
+[90m[2020-07-09 12:56:35.264][0m [32m INFO[0m ####################################################### (main.main:main.go:52)
+[90m[2020-07-09 12:56:35.265][0m [32m INFO[0m rbac_model.conf[request_definition]
+r = sub, dom, obj, act
+
+[policy_definition]
+p = sub, dom, obj, act, eft
+
+[role_definition]
+g = _, _, _
+
+[policy_effect]
+e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
+
+[matchers]
+m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
+ (security.casbinModelFilePath:casbin_enforcer.go:44)
+[90m[2020-07-09 12:56:35.267][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
+[90m[2020-07-09 12:56:35.268][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:56:35][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:56:35.269][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/framework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:56:35][0m [36;1m[0.99ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:57:56.932][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
+[90m[2020-07-09 12:57:56.946][0m [32m INFO[0m ======初始化server.json========  (server.init.0:init.go:23)
+[90m[2020-07-09 12:57:56.947][0m [32m INFO[0m Server configure{
+    "ServerName": "ShdowDemo",
+    "Platform": "linux",
+    "BuildVersion":"v.12",
+    "Node": 1,
+    "DataSource": [
+        {
+            "Username": "root",
+            "Password": "1234",
+            "URL": "root:1234@tcp(127.0.0.1:3306)/shadow?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai",
+            "Driver": "mysql",
+            "IdlePoolSize": 30,
+            "MaxPoolSize": 200,
+            "MaxLifeTime": 60,
+            "SqlDebug": 1,
+            "AutoCreate":true
+        }
+    ],
+    "RedisSource": {
+        "Password": "",
+        "Host": "127.0.0.1",
+        "Port": ":6379",
+        "DB": "0",
+        "MaxIdle": 30,
+        "MaxActive": 100,
+        "IdleTimeout": 60
+    },
+    "AdminServer": {
+        "Host": "http://localhost:8031",
+        "Port": ":8031",
+        "ContextPath": "/acc"
+    },
+    "PlayerServer": {
+        "Host": "http://localhost:8030",
+        "Port": ":8030",
+        "ContextPath": "/api/v1"
+    },
+    "AlossServer": {
+        "AccesskeyID": "",
+        "AccesskeySecret": "",
+        "BucketName": "destest",
+        "EndPoint": ""
+    },
+    "StmpServer": {
+        "SendEmailAccount" : "",
+        "Host": "",
+        "Port": 587,
+        "Username": "",
+        "Password": ""
+    }
+} (server.LoadWithFile:server_configure_manager.go:48)
+[90m[2020-07-09 12:57:56.967][0m [34mDEBUG[0m TServerConfigure [34mNode[0m=1 [34mPlatform[0m=linux [34mServerName[0m=ShdowDemo [34m~LineNum[0m= (server.newServerConfigure:server_configure_manager.go:32)
+[90m[2020-07-09 12:57:56.968][0m [32m INFO[0m ======加载数据库配置=========  (server.init.0:init.go:25)
+[90m[2020-07-09 12:57:56.968][0m [32m INFO[0m ======加载redis配置========  (server.init.0:init.go:27)
+[90m[2020-07-09 12:57:56.968][0m [32m INFO[0m ======加载阿里oss配置=======  (server.init.0:init.go:29)
+[90m[2020-07-09 12:57:56.972][0m [32m INFO[0m IDGenerator init  (idgenerator.init.0:init.go:14)
+[90m[2020-07-09 12:57:56.972][0m [32m INFO[0m AnonymousAuthenticationProvider init  (security.init.0:init.go:27)
+[90m[2020-07-09 12:57:56.972][0m [32m INFO[0m CasbinAuthenticationProvider init  (security.init.0:init.go:30)
+[90m[2020-07-09 12:57:56.973][0m [32m INFO[0m DaoAuthenticationProvider init  (security.init.0:init.go:33)
+[90m[2020-07-09 12:57:56.973][0m [32m INFO[0m PasswordEncoder init  (security.init.0:init.go:36)
+[90m[2020-07-09 12:57:56.973][0m [32m INFO[0m ProviderManager init  (security.init.0:init.go:39)
+[90m[2020-07-09 12:57:56.973][0m [32m INFO[0m CasbinAuthenticationRequestResolver init (security.init.0:init.go:42)
+[90m[2020-07-09 12:57:56.973][0m [32m INFO[0m UsernamePasswordResolver init (security.init.0:init.go:45)
+[90m[2020-07-09 12:57:56.973][0m [32m INFO[0m concurrentlimit init (concurrentlimit.init.0:init.go:13)
+[90m[2020-07-09 12:57:56.974][0m [32m INFO[0m I18nResolver init (i18nmiddleware.init.0:init.go:15)
+[90m[2020-07-09 12:57:56.974][0m [32m INFO[0m session middleware init (sessionmiddleware.init.0:init.go:16)
+[90m[2020-07-09 12:57:56.974][0m [32m INFO[0m securitymiddleware middleware init (securitymiddleware.init.0:init.go:13)
+[90m[2020-07-09 12:57:56.979][0m [32m INFO[0m 注册表结构到数据库  (router.init.0:init.go:36)
+[90m[2020-07-09 12:57:56.985][0m [32m INFO[0m 登录方法注册  (router.init.0:init.go:38)
+[90m[2020-07-09 12:57:56.986][0m [32m INFO[0m 主数据库初始化  (main.main:main.go:33)
+[90m[2020-07-09 12:57:56.986][0m [32m INFO[0m 注册表  (main.main:main.go:35)
+[90m[2020-07-09 12:57:56.986][0m [32m INFO[0m redis 初始化  (main.main:main.go:39)
+[90m[2020-07-09 12:57:56.987][0m [32m INFO[0m model 初始化  (main.main:main.go:42)
+[90m[2020-07-09 12:57:57.740][0m [34mDEBUG[0m create a new db connetion [34mdb[0m=&{RWMutex:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:0 readerWait:0} Value:<nil> Error:<nil> RowsAffected:0 db:0xc0000de0c0 blockGlobalUpdate:false logMode:2 logger:{} search:0xc00045c000 values:{mu:{state:0 sema:0} read:{v:{m:map[gorm:table_options:0xc000092018] amended:false}} dirty:map[] misses:0} parent:0xc000301930 callbacks:<nil> dialect:0xc000306020 singularTable:false nowFuncOverride:<nil>} [34m~LineNum[0m= (datasource.(*TGormDataSourceManager).openConn:datasource_manager_impl.go:187)
+[90m[2020-07-09 12:57:57.741][0m [32m INFO[0m service 初始化  (main.main:main.go:45)
+[90m[2020-07-09 12:57:57.742][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/model/dao/prog_config_dao.go:45)[0m
+[33m[2020-07-09 12:57:57][0m [36;1m[0.00ms][0m SELECT * FROM `prog_config`  WHERE (`prog_config`.`disabled` = true) 
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:57:57.752][0m [32m INFO[0m ####################################################### (main.main:main.go:50)
+[90m[2020-07-09 12:57:57.753][0m [32m INFO[0m ###### v.12 ###### (main.main:main.go:51)
+[90m[2020-07-09 12:57:57.753][0m [32m INFO[0m ####################################################### (main.main:main.go:52)
+[90m[2020-07-09 12:57:57.754][0m [32m INFO[0m rbac_model.conf[request_definition]
+r = sub, dom, obj, act
+
+[policy_definition]
+p = sub, dom, obj, act, eft
+
+[role_definition]
+g = _, _, _
+
+[policy_effect]
+e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
+
+[matchers]
+m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
+ (security.casbinModelFilePath:casbin_enforcer.go:44)
+[90m[2020-07-09 12:57:57.755][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
+[90m[2020-07-09 12:57:57.757][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:57:57][0m [36;1m[0.97ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:57:57.758][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:57:57][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:58:10.033][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
+[90m[2020-07-09 12:58:10.051][0m [32m INFO[0m ======初始化server.json========  (server.init.0:init.go:23)
+[90m[2020-07-09 12:58:10.052][0m [32m INFO[0m Server configure{
+    "ServerName": "ShdowDemo",
+    "Platform": "linux",
+    "BuildVersion":"v.12",
+    "Node": 1,
+    "DataSource": [
+        {
+            "Username": "root",
+            "Password": "1234",
+            "URL": "root:1234@tcp(127.0.0.1:3306)/shadow?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai",
+            "Driver": "mysql",
+            "IdlePoolSize": 30,
+            "MaxPoolSize": 200,
+            "MaxLifeTime": 60,
+            "SqlDebug": 1,
+            "AutoCreate":true
+        }
+    ],
+    "RedisSource": {
+        "Password": "",
+        "Host": "127.0.0.1",
+        "Port": ":6379",
+        "DB": "0",
+        "MaxIdle": 30,
+        "MaxActive": 100,
+        "IdleTimeout": 60
+    },
+    "AdminServer": {
+        "Host": "http://localhost:8031",
+        "Port": ":8031",
+        "ContextPath": "/acc"
+    },
+    "PlayerServer": {
+        "Host": "http://localhost:8030",
+        "Port": ":8030",
+        "ContextPath": "/api/v1"
+    },
+    "AlossServer": {
+        "AccesskeyID": "",
+        "AccesskeySecret": "",
+        "BucketName": "destest",
+        "EndPoint": ""
+    },
+    "StmpServer": {
+        "SendEmailAccount" : "",
+        "Host": "",
+        "Port": 587,
+        "Username": "",
+        "Password": ""
+    }
+} (server.LoadWithFile:server_configure_manager.go:48)
+[90m[2020-07-09 12:58:10.065][0m [34mDEBUG[0m TServerConfigure [34mNode[0m=1 [34mPlatform[0m=linux [34mServerName[0m=ShdowDemo [34m~LineNum[0m= (server.newServerConfigure:server_configure_manager.go:32)
+[90m[2020-07-09 12:58:10.066][0m [32m INFO[0m ======加载数据库配置=========  (server.init.0:init.go:25)
+[90m[2020-07-09 12:58:10.066][0m [32m INFO[0m ======加载redis配置========  (server.init.0:init.go:27)
+[90m[2020-07-09 12:58:10.066][0m [32m INFO[0m ======加载阿里oss配置=======  (server.init.0:init.go:29)
+[90m[2020-07-09 12:58:10.066][0m [32m INFO[0m IDGenerator init  (idgenerator.init.0:init.go:14)
+[90m[2020-07-09 12:58:10.066][0m [32m INFO[0m AnonymousAuthenticationProvider init  (security.init.0:init.go:27)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m CasbinAuthenticationProvider init  (security.init.0:init.go:30)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m DaoAuthenticationProvider init  (security.init.0:init.go:33)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m PasswordEncoder init  (security.init.0:init.go:36)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m ProviderManager init  (security.init.0:init.go:39)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m CasbinAuthenticationRequestResolver init (security.init.0:init.go:42)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m UsernamePasswordResolver init (security.init.0:init.go:45)
+[90m[2020-07-09 12:58:10.067][0m [32m INFO[0m concurrentlimit init (concurrentlimit.init.0:init.go:13)
+[90m[2020-07-09 12:58:10.068][0m [32m INFO[0m 主数据库初始化  (main.main:main.go:40)
+[90m[2020-07-09 12:58:10.068][0m [32m INFO[0m 注册表  (main.main:main.go:42)
+[90m[2020-07-09 12:58:10.068][0m [32m INFO[0m redis 初始化  (main.main:main.go:46)
+[90m[2020-07-09 12:58:10.068][0m [32m INFO[0m model 初始化  (main.main:main.go:49)
+[90m[2020-07-09 12:58:10.819][0m [34mDEBUG[0m create a new db connetion [34mdb[0m=&{RWMutex:{w:{state:0 sema:0} writerSem:0 readerSem:0 readerCount:0 readerWait:0} Value:<nil> Error:<nil> RowsAffected:0 db:0xc0001ca600 blockGlobalUpdate:false logMode:2 logger:{} search:0xc0000f3080 values:{mu:{state:0 sema:0} read:{v:{m:map[gorm:table_options:0xc0000cb618] amended:false}} dirty:map[] misses:0} parent:0xc000418750 callbacks:<nil> dialect:0xc0004222a0 singularTable:false nowFuncOverride:<nil>} [34m~LineNum[0m= (datasource.(*TGormDataSourceManager).openConn:datasource_manager_impl.go:187)
+[90m[2020-07-09 12:58:10.820][0m [32m INFO[0m service 初始化  (main.main:main.go:52)
+[90m[2020-07-09 12:58:10.821][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/model/dao/prog_config_dao.go:45)[0m
+[33m[2020-07-09 12:58:10][0m [36;1m[0.00ms][0m SELECT * FROM `prog_config`  WHERE (`prog_config`.`disabled` = true) 
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:58:10.829][0m [34mDEBUG[0m plain: {"UserLevel":"1"}
+ (main.main:main.go:61)
+[90m[2020-07-09 12:58:10.831][0m [34mDEBUG[0m err: <nil> (main.main:main.go:64)
+[90m[2020-07-09 12:58:10.831][0m [34mDEBUG[0m EncryptData: 331e1e03450d2cfbfb35fb05c9b4d12e32bef313dbe28c7047f95661ac963263 (main.main:main.go:67)
+[90m[2020-07-09 12:58:10.831][0m [34mDEBUG[0m EncryptData: 331E1E03450D2CFBFB35FB05C9B4D12E32BEF313DBE28C7047F95661AC963263 (main.main:main.go:69)
+[90m[2020-07-09 12:58:10.831][0m [34mDEBUG[0m param: Action=query_banklist&Data=331E1E03450D2CFBFB35FB05C9B4D12E32BEF313DBE28C7047F95661AC963263&MerchantNo=liujian&Key=tbKAdNFwroxe5acEee98T0ZZXenoXC18sdtr4lwIILY= (main.main:main.go:80)
+[90m[2020-07-09 12:58:10.832][0m [34mDEBUG[0m sign: 4D42A083D7794B8116B1D5DFCDCF6CD8 (main.main:main.go:84)
+[90m[2020-07-09 12:58:10.833][0m [32m INFO[0m ####################################################### (main.main:main.go:95)
+[90m[2020-07-09 12:58:10.833][0m [32m INFO[0m ###### v.12 ###### (main.main:main.go:96)
+[90m[2020-07-09 12:58:10.833][0m [32m INFO[0m ####################################################### (main.main:main.go:97)
+[90m[2020-07-09 12:58:10.834][0m [32m INFO[0m rbac_model.conf[request_definition]
+r = sub, dom, obj, act
+
+[policy_definition]
+p = sub, dom, obj, act, eft
+
+[role_definition]
+g = _, _, _
+
+[policy_effect]
+e = some(where (p.eft == allow)) && !some(where (p.eft == deny))
+
+[matchers]
+m = g(r.sub, p.sub, r.dom) && r.dom == p.dom && keyMatch(r.obj, p.obj) && keyMatch(r.act, p.act)
+ (security.casbinModelFilePath:casbin_enforcer.go:44)
+[90m[2020-07-09 12:58:10.835][0m [32m INFO[0m Casbin Enforcer init (security.GetCasbinEnforcer:casbin_enforcer.go:25)
+[90m[2020-07-09 12:58:10.836][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:58:10][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
+[36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)
+[90m[2020-07-09 12:58:10.837][0m [34mDEBUG[0m [35m(C:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/security/adapter/casbin_adapter.go:116)[0m
+[33m[2020-07-09 12:58:10][0m [36;1m[0.00ms][0m SELECT * FROM `casbin_rule`   
 [36;31m[0 rows affected or returned ][0m  (logger.(*Logger).SqlDebug:logger.go:306)

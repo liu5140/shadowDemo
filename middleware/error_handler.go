@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"shadowDemo/shadow-framework/security"
+	"shadowDemo/zframework/security"
 
 	"github.com/gin-gonic/gin"
 	"github.com/nicksnyder/go-i18n/i18n"

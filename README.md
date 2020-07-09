@@ -30,7 +30,7 @@
 > 
 > service 具体业务实现类
 > 
-> shadow-framework 框架（里面包含了数据库的实例化、oss的实例化、全局主键生成、日志、登录的校验、casbin的校验，server.jSON 文件解析，还有一些工具类）
+> zframework 框架（里面包含了数据库的实例化、oss的实例化、全局主键生成、日志、登录的校验、casbin的校验，server.jSON 文件解析，还有一些工具类）
 > 
 > sql 发布文件sql 初始化文件 
 >
@@ -43,7 +43,7 @@
         "Host": "http://localhost:8031",
         "Port": ":8031",
         "ContextPath": "/acc"
-    },）  则需要在shadow-framework server中配置对应的结构体，在项目中可引用（server.ServerConfigInstance().AdminServer.Host）
+    },）  则需要在zframework server中配置对应的结构体，在项目中可引用（server.ServerConfigInstance().AdminServer.Host）
 > 
 > 实体类定义在model/do 中进行定义，每个文件定义一个结构体,然后在外面执行 go run .\model\daogen\main\main.go ，会生成对应的dao方法
 > 

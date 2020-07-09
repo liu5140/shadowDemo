@@ -1,14 +1,14 @@
 package dao
 
 import (
-    "time"
 	"shadowDemo/model/do"
-	"shadowDemo/shadow-framework/model"
+	"shadowDemo/zframework/model"
+	"time"
 )
 
 type PlayerSearchCondition struct {
-    //id
-    IDS []int64
+	//id
+	IDS []int64
 	//创建开始时间
 	CreateStartTime time.Time
 	//创建截止时间
@@ -17,12 +17,12 @@ type PlayerSearchCondition struct {
 
 func (dao *PlayerDao) SearchPlayers(condition *PlayerSearchCondition, rowbound *model.RowBound) (result []do.Player, count int, err error) {
 	db := dao.db
-    
+
 	if len(condition.IDS) > 0 {
 		db = db.Where("id in (?) ", condition.IDS)
 	}
 
-    //创建时间
+	//创建时间
 	if !condition.CreateStartTime.IsZero() && !condition.CreateEndTime.IsZero() {
 		db = db.Where("created_at BETWEEN ? AND ?", condition.CreateStartTime, condition.CreateEndTime)
 	} else if !condition.CreateStartTime.IsZero() {

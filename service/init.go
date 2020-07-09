@@ -3,7 +3,8 @@ package service
 import (
 	"sync"
 
-	"shadowDemo/shadow-framework/logger"
+	"shadowDemo/zframework/logger"
+
 	"github.com/jinzhu/gorm"
 
 	"github.com/nicksnyder/go-i18n/i18n"

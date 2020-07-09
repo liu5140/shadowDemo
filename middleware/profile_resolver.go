@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"shadowDemo/shadow-framework/security"
+	"shadowDemo/zframework/security"
 
 	"github.com/gin-gonic/gin"
 )

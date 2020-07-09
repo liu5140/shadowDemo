@@ -11,8 +11,8 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"shadowDemo/shadow-framework/logger"
-	"shadowDemo/shadow-framework/utils"
+	"shadowDemo/zframework/logger"
+	"shadowDemo/zframework/utils"
 )
 
 var Log *logger.Logger
@@ -30,7 +30,7 @@ package model
 
 import (
 	"shadowDemo/model/dao"
-	"shadowDemo/shadow-framework/datasource"
+	"shadowDemo/zframework/datasource"
 )
 
 type Model struct {

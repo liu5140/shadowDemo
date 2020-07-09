@@ -7,7 +7,7 @@ import (
 
 	"shadowDemo/service"
 
-	"shadowDemo/shadow-framework/security"
+	"shadowDemo/zframework/security"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/dgrijalva/jwt-go/request"

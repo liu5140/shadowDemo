@@ -7,7 +7,7 @@ import (
 	"image/png"
 	"net/http"
 	"os"
-	"shadowDemo/shadow-framework/utils/encoder"
+	"shadowDemo/zframework/utils/encoder"
 	"sync"
 
 	"github.com/gin-gonic/gin"
