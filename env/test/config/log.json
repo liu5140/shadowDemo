@@ -1,0 +1,6 @@
+{
+    "MaxSize": 100,
+    "MaxBackups": 20,
+    "MaxAge": 7,
+    "Level": "DEBUG"
+  }

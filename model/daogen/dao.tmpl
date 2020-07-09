@@ -1,0 +1,114 @@
+package dao
+
+import (
+	"errors"
+	"shadowDemo/model/do"
+	"shadowDemo/shadow-framework/utils"
+	"sync"
+	"github.com/jinzhu/gorm"
+)
+
+type {{.StructName}}Dao struct {
+	db    *gorm.DB
+	mutex *sync.Mutex
+}
+
+var {{LowerCaseFirstLetter .StructName}}Dao *{{.StructName}}Dao = nil
+
+func New{{.StructName}}Dao(db *gorm.DB) *{{.StructName}}Dao {
+	{{LowerCaseFirstLetter .StructName}}Dao = &{{.StructName}}Dao{
+		db:    db,
+		mutex: &sync.Mutex{},
+	}
+	return {{LowerCaseFirstLetter .StructName}}Dao
+}
+
+func Get{{.StructName}}Dao() *{{.StructName}}Dao {
+	utils.ASSERT({{LowerCaseFirstLetter .StructName}}Dao != nil)
+	return {{LowerCaseFirstLetter .StructName}}Dao
+}
+
+func (dao *{{.StructName}}Dao) Lock() {
+	dao.mutex.Lock()
+}
+
+func (dao *{{.StructName}}Dao) Unlock() {
+	dao.mutex.Unlock()
+}
+
+func (dao *{{.StructName}}Dao) Create(m *do.{{.StructName}}) error {
+	return dao.db.Create(m).Error
+}
+
+func (dao *{{.StructName}}Dao) Find(m *do.{{.StructName}}) (result []*do.{{.StructName}}, err error) {
+	err = dao.db.Find(&result, m).Error
+	return
+}
+
+func (dao *{{.StructName}}Dao) FindOne(m *do.{{.StructName}}) error {
+	return dao.db.First(m, m).Error
+}
+
+func (dao *{{.StructName}}Dao) FindLast(m *do.{{.StructName}}) error {
+	return dao.db.Last(m, m).Error
+}
+
+func (dao *{{.StructName}}Dao) Get(m *do.{{.StructName}}) error {
+	if dao.db.NewRecord(m) {
+		return errors.New("id is nil")
+	}
+	return dao.db.Find(m).Error
+}
+
+func (dao *{{.StructName}}Dao) BatchGet(idbatch []int64) (result []*do.{{.StructName}}, err error) {
+	if len(idbatch) == 0 {
+		return nil, errors.New("id is nil")
+	}
+	err = dao.db.Model(&do.{{.StructName}}{}).Where("id in (?)", idbatch).Find(&result).Error
+	return
+}
+
+func (dao *{{.StructName}}Dao) GetForUpdate(m *do.{{.StructName}}) error {
+	if dao.db.NewRecord(m) {
+		return errors.New("id is nil")
+	}
+	return dao.db.Set("gorm:query_option", "FOR UPDATE").Find(m).Error
+}
+
+func (dao *{{.StructName}}Dao) Save(m *do.{{.StructName}}) error {
+	return dao.db.Save(m).Error
+}
+
+func (dao *{{.StructName}}Dao) Delete(m *do.{{.StructName}}) error {
+	if dao.db.NewRecord(m) {
+		return errors.New("id is nil")
+	}
+	return dao.db.Delete(m).Error
+}
+
+func (dao *{{.StructName}}Dao) BatchDelete(idbatch []int64) error {
+	if len(idbatch) == 0 {
+		return errors.New("id is nil")
+	}
+	return dao.db.Where("id in (?)", idbatch).Delete(&do.{{.StructName}}{}).Error
+}
+
+func (dao *{{.StructName}}Dao) Updates(id int64, attrs map[string]interface{}) error {
+	return dao.db.Model(&do.{{.StructName}}{}).Where("id = ?", id).Updates(attrs).Error
+}
+
+func (dao *{{.StructName}}Dao) Update(id int64, attr string, value interface{}) error {
+	return dao.db.Model(&do.{{.StructName}}{}).Where("id = ?", id).Update(attr, value).Error
+}
+
+func (dao *{{.StructName}}Dao) BatchUpdaterAttrs(idbatch []int64, attrs map[string]interface{}) error {
+	if len(idbatch) == 0 {
+		return errors.New("id is nil")
+	}
+	return dao.db.Model(&do.{{.StructName}}{}).Where("id in (?)", idbatch).Updates(attrs).Error
+}
+
+func (dao *{{.StructName}}Dao) Found(m *do.{{.StructName}}) bool {
+	find := dao.db.First(m, m).RecordNotFound()
+	return !find
+}

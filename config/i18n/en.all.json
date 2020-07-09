@@ -1,0 +1,29 @@
+{
+    "key_alert_error_username_password_error": {
+        "other": "Wrong username or password"
+    },
+    "key_alert_error_not_promission_error": {
+        "other": "Insufficient permissions"
+    },
+    "key_alert_error_account_locked_error": {
+        "other": "Account is frozen"
+    },
+    "key_alert_error_account_expired_error": {
+        "other": "Account is disabled"
+    },
+    "key_alert_error_sms_expired_error": {
+        "other": "Verification code has expired"
+    },
+    "key_alert_error_token_error": {
+        "other": "Token error"
+    },
+    "key_alert_error_captcha_error": {
+        "other": "Verification code error"
+    },
+    "key_alert_ip_not_allowed_error": {
+        "other": "Access prohibited in this IP"
+    },
+    "key_alert_error_amount_not_promission_error": {
+        "other": "Insufficient amount permissions"
+    }
+}

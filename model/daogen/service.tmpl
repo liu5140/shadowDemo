@@ -1,0 +1,76 @@
+package service
+
+import (
+	"shadowDemo/model"
+	"shadowDemo/model/dao"
+	"shadowDemo/model/do"
+	modelc "shadowDemo/shadow-framework/model"
+)
+
+type {{.StructName}}Service struct{}
+
+var {{LowerCaseFirstLetter .StructName}}Service *{{.StructName}}Service
+
+func New{{.StructName}}Service() *{{.StructName}}Service {
+	if {{LowerCaseFirstLetter .StructName}}Service == nil {
+		l.Lock()
+		if {{LowerCaseFirstLetter .StructName}}Service == nil {
+			{{LowerCaseFirstLetter .StructName}}Service = &{{.StructName}}Service{}
+		}
+		l.Unlock()
+	}
+	return {{LowerCaseFirstLetter .StructName}}Service
+}
+
+//创建
+func (service *{{.StructName}}Service) Create{{.StructName}}({{LowerCaseFirstLetter .StructName}} *do.{{.StructName}}) (err error) {
+	return model.GetModel().{{.StructName}}Dao.Create({{LowerCaseFirstLetter .StructName}})
+}
+
+//通过id获取详情
+func (service *{{.StructName}}Service) Get{{.StructName}}ByID(id int64) ({{LowerCaseFirstLetter .StructName}} *do.{{.StructName}}, err error) {
+	{{LowerCaseFirstLetter .StructName}}.ID = id
+	err = model.GetModel().{{.StructName}}Dao.Get({{LowerCaseFirstLetter .StructName}})
+	if err != nil {
+		Log.Error(err)
+		return {{LowerCaseFirstLetter .StructName}}, err
+	}
+	return {{LowerCaseFirstLetter .StructName}}, err
+}
+
+//通过id删除
+func (service *{{.StructName}}Service) Delete{{.StructName}}ByID(id int64) (err error) {
+	if model.GetModel().{{.StructName}}Dao.Delete(&do.{{.StructName}}{ID: id}); err != nil {
+		Log.Error(err)
+		return err
+	}
+	return err
+}
+
+//通过id更新
+func (service *{{.StructName}}Service) Update{{.StructName}}(id int64, attrs map[string]interface{}) (err error) {
+	if err = model.GetModel().{{.StructName}}Dao.Updates(id, attrs); err != nil {
+		Log.Error(err)
+		return err
+	}
+	return err
+}
+
+//查询
+func (service *{{.StructName}}Service) Search{{.StructName}}Paging(condition *dao.{{.StructName}}SearchCondition, pageNum int, pageSize int) (request []do.{{.StructName}}, count int, err error) {
+	rowbound := modelc.NewRowBound(pageNum, pageSize)
+	return service.search{{.StructName}}(condition, &rowbound)
+}
+
+func (service *{{.StructName}}Service) Search{{.StructName}}WithOutPaging(condition *dao.{{.StructName}}SearchCondition) (request []do.{{.StructName}}, count int, err error) {
+	return service.search{{.StructName}}(condition, nil)
+}
+
+func (service *{{.StructName}}Service) search{{.StructName}}(condition *dao.{{.StructName}}SearchCondition, rowbound *modelc.RowBound) (request []do.{{.StructName}}, count int, err error) {
+	result, count, err := model.GetModel().{{.StructName}}Dao.Search{{.StructName}}s(condition, rowbound)
+	if err != nil {
+		Log.Error(err)
+		return nil, 0, err
+	}
+	return result, count, err
+}

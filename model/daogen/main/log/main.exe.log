@@ -1,0 +1,14 @@
+[90m[2020-07-06 10:19:15.028][0m [32m INFO[0m logger init (logger.InitLog:logger.go:55)
+[90m[2020-07-06 10:19:15.041][0m [31mERROR[0m open ./model/daogen/dao.tmpl: The system cannot find the path specified. (daogen.DaoGenEntry:daogen.go:82)
+goroutine 1 [running]:
+runtime/debug.Stack(0x7e7e40, 0xc00004d240, 0x1)
+	c:/go/src/runtime/debug/stack.go:24 +0xa4
+shadowDemo/shadow-framework/logger.(*Logger).logErrorPrint(0xc0000060b8, 0xc00010fc80, 0xc00010fdd8, 0x1, 0x1)
+	C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/logger/logger.go:189 +0x13a
+shadowDemo/shadow-framework/logger.(*Logger).Error(0xc0000060b8, 0xc00010fdd8, 0x1, 0x1)
+	C:/Users/user/go/src/github.com/liu5140/shadowDemo/shadow-framework/logger/logger.go:242 +0x76
+shadowDemo/model/daogen.DaoGenEntry()
+	C:/Users/user/go/src/github.com/liu5140/shadowDemo/model/daogen/daogen.go:82 +0xb81
+main.main()
+	C:/Users/user/go/src/github.com/liu5140/shadowDemo/model/daogen/main/main.go:9 +0x27
+

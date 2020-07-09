@@ -1,0 +1,117 @@
+// Package router shadowDemo restful API.
+//     Version: 1.0
+//     Host: localhost:8030
+//     BasePath: /acc
+// SecurityDefinitions:
+//     api_key:
+//          type: apiKey
+//          name: Authorization
+//          in: header
+// swagger:meta
+package router
+
+import (
+	"errors"
+	"net/http"
+	"shadowDemo/middleware"
+	"shadowDemo/model"
+	"shadowDemo/model/do"
+	"shadowDemo/service"
+	"shadowDemo/shadow-framework/middleware/concurrentlimit"
+	"shadowDemo/shadow-framework/middleware/ginlogrus"
+	"shadowDemo/shadow-framework/middleware/i18nmiddleware"
+	"shadowDemo/shadow-framework/middleware/securitymiddleware"
+	"shadowDemo/shadow-framework/security"
+	"shadowDemo/shadow-framework/server"
+	"shadowDemo/shadow-framework/utils"
+	"time"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	"github.com/nicksnyder/go-i18n/i18n/language"
+)
+
+const (
+	hmacSampleSecret = "tnb9Y0du$2a$10$KmatydruRTKlaUwErUOtNOXiPHVPunb9Y0dup9newm"
+	hmacSecureSecret = "Tnb9Y0du$2a$10$KmatydruRTKlaUwErUOtNOXiPHVPunb9Y0dup9newm"
+)
+
+func MainRouter() http.Handler {
+	loginPath := server.ServerConfigInstance().AdminServer.ContextPath + "/login"
+	engine := gin.New()
+	engine.Use(ginlogrus.Logger())
+	engine.Use(gin.Recovery())
+	engine.Use(cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowMethods:     []string{"GET", "POST", "PUT", "HEAD", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Content-Type, Content-Encoding, Authorization, CaptchaCode, CaptchaKey, OTP, Accept-Language, Accept-Encoding"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: false,
+		MaxAge:           12 * time.Hour,
+	}))
+	//国际化处理
+	engine.Use(i18nmiddleware.I18nResolver())
+	//同iP 多少时间限制多少次访问
+	engine.Use(concurrentlimit.ConcurrentLimit(100, 5*time.Minute))
+	//jwt认证
+	engine.Use(middleware.JWTParse(hmacSampleSecret, 360000))
+	//登录用户校验（冻结，密码错误）
+	engine.Use(securitymiddleware.UsernamePasswordLoginFilter(loginPath))
+	//获取当前用户信息
+	engine.Use(middleware.ProfileResolver(setPlayer))
+	//谷歌验证码
+	engine.Use(middleware.GoogleTokenValidator(loginPath, getProfileID))
+	//普通验证码
+	//	engine.Use(middleware.CaptchaHandler("/pcc/captcha", server.ServerConfigInstance().AdminServer.ContextPath))
+	engine.Use(middleware.ErrorHandler())
+	router := engine.Group(server.ServerConfigInstance().AdminServer.ContextPath)
+	playerRouter(router)
+	sessionRouter(router)
+	webSocketRouter(router)
+	monitorRouter(router)
+	merchantRouter(router)
+	return engine
+}
+
+func getProfileID(c *gin.Context) (profileID int64, site string) {
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	site = profile.CurrentSite
+	profileID = profile.ID
+	return
+}
+
+func setPlayer(c *gin.Context) {
+	token := c.MustGet(security.SHADOW_SECURITY_TOKEN).(*security.TUsernamePasswordAuthenticationToken)
+	lang := c.MustGet("Lang").(*language.Language)
+	playerService := service.NewPlayerService()
+	player := do.Player{}
+	if players, err := playerService.GetPlayerByLoginName(token.GetPrincipal()); err != nil {
+		c.Error(err)
+		return
+	} else {
+		player.ID = players.ID
+		player.NickName = players.NickName
+		player.Account = players.Account
+		player.State = players.State
+	}
+	ip := utils.GetRealIp(c.Request)
+	profile := middleware.Profile{
+		ID:       player.ID,
+		Username: player.NickName,
+		Account:  player.Account,
+		UserType: model.UserTypePlayer,
+		//Locked:   player.State == model.Frozen,
+		//State:    player.State,
+		IP:      ip,
+		DevInfo: utils.GetDeviceInfo(c.Request),
+		Lang:    lang.String(),
+		Host:    server.ServerConfigInstance().AdminServer.Host,
+	}
+	c.Set(PROFILE, profile)
+
+	if profile.Locked {
+		c.Error(security.AccountLockedError{
+			Err: errors.New("Account is locked"),
+		})
+	}
+}

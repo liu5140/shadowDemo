@@ -1,0 +1,22 @@
+package security
+
+//CasbinAuthenticationRequestResolver resolver username and password from gin context
+type CasbinAuthenticationRequestResolver interface {
+	ObtainCasbinRequest(domain string, requestURI string, method string, principal string) TCasbinPolicyDetails
+}
+
+//CasbinAuthenticationRequestResolveFactory CasbinAuthenticationRequestResolveFactory
+type FCasbinAuthenticationRequestResolveFactory func() CasbinAuthenticationRequestResolver
+
+var casbinAuthenticationRequestResolverFactories = make(map[string]FCasbinAuthenticationRequestResolveFactory)
+
+//RegisterCasbinAuthenticationRequestResolve RegisterCasbinAuthenticationRequestResolve
+func RegisterCasbinAuthenticationRequestResolve(name string, factory FCasbinAuthenticationRequestResolveFactory) {
+	casbinAuthenticationRequestResolverFactories[name] = factory
+}
+
+//CasbinAuthenticationRequestResolveInstance CasbinAuthenticationRequestResolveInstance
+func CasbinAuthenticationRequestResolveInstance(name string) CasbinAuthenticationRequestResolver {
+	factory := casbinAuthenticationRequestResolverFactories[name]
+	return factory()
+}

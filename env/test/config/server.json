@@ -1,0 +1,51 @@
+{
+    "ServerName": "ShdowDemo",
+    "Platform": "linux",
+    "BuildVersion":"v.12",
+    "Node": 1,
+    "DataSource": [
+        {
+            "Username": "root",
+            "Password": "1234",
+            "URL": "root:1234@tcp(127.0.0.1:3306)/shadow?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai",
+            "Driver": "mysql",
+            "IdlePoolSize": 30,
+            "MaxPoolSize": 200,
+            "MaxLifeTime": 60,
+            "SqlDebug": 1,
+            "AutoCreate":true
+        }
+    ],
+    "RedisSource": {
+        "Password": "",
+        "Host": "127.0.0.1",
+        "Port": ":6379",
+        "DB": "0",
+        "MaxIdle": 30,
+        "MaxActive": 100,
+        "IdleTimeout": 60
+    },
+    "AdminServer": {
+        "Host": "http://localhost:8031",
+        "Port": ":8031",
+        "ContextPath": "/acc"
+    },
+    "PlayerServer": {
+        "Host": "http://localhost:8030",
+        "Port": ":8030",
+        "ContextPath": "/api/v1"
+    },
+    "AlossServer": {
+        "AccesskeyID": "",
+        "AccesskeySecret": "",
+        "BucketName": "destest",
+        "EndPoint": ""
+    },
+    "StmpServer": {
+        "SendEmailAccount" : "",
+        "Host": "",
+        "Port": 587,
+        "Username": "",
+        "Password": ""
+    }
+}
