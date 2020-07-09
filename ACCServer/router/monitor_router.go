@@ -47,6 +47,7 @@ func monitorRouter(r *gin.RouterGroup) {
 }
 
 func monitorServer(c *gin.Context) {
+
 	cpuNum := runtime.NumCPU() //核心数
 
 	var cpuUsed float64 = 0  //用户使用率

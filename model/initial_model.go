@@ -17,6 +17,9 @@ new(do.Merchant),
 new(do.Order),
 new(do.Player),
 new(do.ProgConfig),
+new(do.UpmsAdmin),
+new(do.UpmsMenu),
+new(do.UpmsRole),
 new(do.User),
 
 }

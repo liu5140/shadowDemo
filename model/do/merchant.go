@@ -2,6 +2,7 @@ package do
 
 import "time"
 
+//商户信息
 // sagger:model
 type Merchant struct {
 	ID         int64 `gorm:"primary_key"`

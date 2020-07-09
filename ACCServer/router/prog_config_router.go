@@ -34,7 +34,7 @@ func progConfigRouter(r *gin.RouterGroup) {
 	//       default: genericError
 	r.POST("/progConfig", createProgConfig)
 
-	// swagger:route POST /progConfig progConfig searchProgConfig
+	// swagger:route POST /progConfigs progConfig searchProgConfig
 	//
 	// 查询列表;
 	//

@@ -2,9 +2,11 @@ package router
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"shadowDemo/ACCServer/router/vo"
 	"shadowDemo/service"
+	"shadowDemo/zframework/bizerr"
 	"shadowDemo/zframework/logger"
 	"shadowDemo/zframework/security"
 	"strconv"
@@ -62,16 +64,19 @@ func newClientError(c *gin.Context, err error) {
 }
 
 func newServerError(c *gin.Context, err error) {
-	Log.Error(err)
 	T := c.MustGet("T").(i18n.TranslateFunc)
 	message := ""
+	Log.Infoln("==========", err.Error())
 	switch err.(type) {
-	case service.LessThanDepositError:
-		message = T("key_deposit_notenough_error", map[string]interface{}{"limit": err.(service.LessThanDepositError).Limit})
+	case bizerr.GlobalError:
+		attrs := map[string]interface{}{}
+		for i, v := range err.(bizerr.GlobalError).Arg {
+			attrs[fmt.Sprintf("Arg%d", i)] = v
+		}
+		message = T(err.Error(), attrs)
 	default:
-		message = T("key_common_error")
+		message = err.Error()
 	}
-
 	if gorm.IsRecordNotFoundError(err) {
 		c.JSON(http.StatusOK, vo.EmptyMessageBody{
 			Result: make([]string, 0),
