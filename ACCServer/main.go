@@ -8,6 +8,7 @@ import (
 	"os/signal"
 	"shadowDemo/ACCServer/router"
 	"shadowDemo/model"
+	"shadowDemo/service"
 	"shadowDemo/shadow-framework/credis"
 	"shadowDemo/shadow-framework/datasource"
 	"shadowDemo/shadow-framework/logger"
@@ -37,8 +38,12 @@ func main() {
 	//datasource.RegisterShardingDatasourceManager(datasource.DATASOURCE_MANAGER, datasource.ShardindDataSourceInstance)
 	Log.Infoln("redis 初始化")
 	credis.RegisterRedisManager(credis.REDIS_MANAGER, credis.RedisInstance)
-	//dao初始化
+
+	Log.Infoln("model 初始化")
 	model.ModelInit()
+
+	Log.Infoln("service 初始化")
+	service.ServiceInit()
 
 	BuildVersion = server.ServerConfigInstance().BuildVersion
 
