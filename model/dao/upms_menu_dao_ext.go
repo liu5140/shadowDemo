@@ -51,8 +51,6 @@ func (dao *UpmsMenuDao) SearchUpmsMenus(condition *UpmsMenuSearchCondition, rowb
 	return result, count, nil
 }
 
-
-
 func (dao *UpmsMenuDao) UpdatePath(frompath string, topath string) error {
 	return dao.db.Exec("update menu set path =REPLACE(path,?,?),updated_at =Now() where path like ?  ", frompath, topath, frompath+"%").Error
 }

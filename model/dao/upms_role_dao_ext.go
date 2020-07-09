@@ -43,3 +43,8 @@ func (dao *UpmsRoleDao) SearchUpmsRoles(condition *UpmsRoleSearchCondition, rowb
 
 	return result, count, nil
 }
+
+func (dao *UpmsRoleDao) GetRolesByCodes(codes []string) (result []do.UpmsRole, err error) {
+	err = dao.db.Table("Upms_Role").Where("code in (?) ", codes).Find(&result).Error
+	return
+}
