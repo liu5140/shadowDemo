@@ -27,12 +27,12 @@
     },
     "AdminServer": {
         "Host": "http://localhost:8031",
-        "Port": ":8031",
+        "Port": ":8030",
         "ContextPath": "/acc"
     },
     "PlayerServer": {
         "Host": "http://localhost:8030",
-        "Port": ":8030",
+        "Port": ":8031",
         "ContextPath": "/api/v1"
     },
     "AlossServer": {

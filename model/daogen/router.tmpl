@@ -1,0 +1,227 @@
+package router
+
+import (
+	"net/http"
+	"shadowDemo/ACCServer/router/vo"
+	"shadowDemo/middleware"
+	"shadowDemo/model/dao"
+	"shadowDemo/model/do"
+	"shadowDemo/service"
+
+	"github.com/gin-gonic/gin"
+)
+
+func {{LowerCaseFirstLetter .StructName}}Router(r *gin.RouterGroup) {
+	// swagger:route POST /{{LowerCaseFirstLetter .StructName}} {{LowerCaseFirstLetter .StructName}} create{{.StructName}}
+	//
+	// 创建;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: genericSuccess
+	//       default: genericError
+	r.POST("/{{LowerCaseFirstLetter .StructName}}", create{{.StructName}})
+
+	// swagger:route POST /{{LowerCaseFirstLetter .StructName}}s {{LowerCaseFirstLetter .StructName}} search{{.StructName}}
+	//
+	// 查询列表;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: search{{.StructName}}Response
+	//       default: genericError
+	r.POST("/{{LowerCaseFirstLetter .StructName}}s", Search{{.StructName}})
+
+	// swagger:route GET /{{LowerCaseFirstLetter .StructName}} {{LowerCaseFirstLetter .StructName}} get{{.StructName}}
+	//
+	// 详情;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: get{{.StructName}}Response
+	//       default: genericError
+	r.GET("/{{LowerCaseFirstLetter .StructName}}", Get{{.StructName}})
+
+	// swagger:route PUT /{{LowerCaseFirstLetter .StructName}} {{LowerCaseFirstLetter .StructName}} update{{.StructName}}
+	//
+	// 修改;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: genericSuccess
+	//       default: genericError
+	r.PUT("/{{LowerCaseFirstLetter .StructName}}", Update{{.StructName}})
+
+	// swagger:route DELETE /{{LowerCaseFirstLetter .StructName}} {{LowerCaseFirstLetter .StructName}} delete{{.StructName}}
+	//
+	// 删除;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: genericSuccess
+	//       default: genericError
+	r.DELETE("/{{LowerCaseFirstLetter .StructName}}", Delete{{.StructName}})
+
+}
+
+func create{{.StructName}}(c *gin.Context) {
+	{{LowerCaseFirstLetter .StructName}}Service := service.New{{.StructName}}Service()
+	request := &vo.Create{{.StructName}}Request{}
+	err := c.Bind(&request.Body)
+	if err != nil {
+		newClientError(c, err)
+		return
+	}
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	{{LowerCaseFirstLetter .StructName}} := &do.{{.StructName}}{
+		CreatedBy:  profile.Account,
+	}
+
+	err = {{LowerCaseFirstLetter .StructName}}Service.Create{{.StructName}}({{LowerCaseFirstLetter .StructName}})
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+
+	newSuccess(c)
+}
+
+func Search{{.StructName}}(c *gin.Context) {
+	{{LowerCaseFirstLetter .StructName}}Service := service.New{{.StructName}}Service()
+	request := &vo.Search{{.StructName}}Request{}
+	err := c.Bind(&request.Body)
+	if err != nil {
+		newClientError(c, err)
+		return
+	}
+
+	condition := &dao.{{.StructName}}SearchCondition{
+		IDS:             request.Body.IDS,
+		CreateStartTime: request.Body.CreateStartTime,
+		CreateEndTime:   request.Body.CreateEndTime,
+	}
+
+	result, count, err := {{LowerCaseFirstLetter .StructName}}Service.Search{{.StructName}}Paging(condition, request.Body.PageNum, request.Body.PageSize)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+
+	c.JSON(http.StatusOK, vo.Search{{.StructName}}ResponseBody{
+		Result: result,
+		Count:  count,
+	})
+}
+
+func Get{{.StructName}}(c *gin.Context) {
+	id, err := bindID(c)
+	if err != nil {
+		newClientError(c, err)
+		return
+	}
+	{{LowerCaseFirstLetter .StructName}}Service := service.New{{.StructName}}Service()
+	{{LowerCaseFirstLetter .StructName}}, err := {{LowerCaseFirstLetter .StructName}}Service.Get{{.StructName}}ByID(id)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+
+	c.JSON(http.StatusOK, vo.Get{{.StructName}}ResponseBody{
+		Result: *{{LowerCaseFirstLetter .StructName}},
+	})
+}
+
+func Update{{.StructName}}(c *gin.Context) {
+	{{LowerCaseFirstLetter .StructName}}Service := service.New{{.StructName}}Service()
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	request := &vo.Update{{.StructName}}Request{}
+	id, err := bindID(c)
+	if err != nil {
+		newClientError(c, err)
+		return
+	}
+	if err := c.Bind(&request.Body); err != nil {
+		newClientError(c, err)
+		return
+	}
+	attrs := map[string]interface{}{}
+	//修改人
+	attrs["created_by"] = profile.Account
+
+	err = {{LowerCaseFirstLetter .StructName}}Service.Update{{.StructName}}(id, attrs)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+	newSuccess(c)
+}
+
+func Delete{{.StructName}}(c *gin.Context) {
+	{{LowerCaseFirstLetter .StructName}}Service := service.New{{.StructName}}Service()
+	id, err := bindID(c)
+	if err != nil {
+		newClientError(c, err)
+		return
+	}
+	err = {{LowerCaseFirstLetter .StructName}}Service.Delete{{.StructName}}ByID(id)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+	newSuccess(c)
+}

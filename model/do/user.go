@@ -12,6 +12,7 @@ type User struct {
 	CreatedAt *time.Time
 	UpdatedAt *time.Time
 	DeletedAt *time.Time
+	CreatedBy string
 	// 帐号
 	Account string `gorm:"not null;index" json:"account"`
 	// 登录密码

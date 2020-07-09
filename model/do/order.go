@@ -18,6 +18,7 @@ type Order struct {
 	CreatedAt         *time.Time
 	UpdatedAt         *time.Time
 	DeletedAt         *time.Time
+	CreatedBy         string
 	OrderNo           string
 	CustomerNo        string
 	MerchantSecretKey string

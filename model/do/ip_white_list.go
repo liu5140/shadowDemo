@@ -7,6 +7,7 @@ type IPWhiteList struct {
 	CreatedAt *time.Time
 	UpdatedAt *time.Time
 	DeletedAt *time.Time
+	CreatedBy string
 	AccountNo string
 	//	AccountType AccountType
 	AccountName string

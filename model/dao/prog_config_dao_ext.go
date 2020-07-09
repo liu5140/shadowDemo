@@ -13,6 +13,10 @@ type ProgConfigSearchCondition struct {
 	CreateStartTime time.Time
 	//创建截止时间
 	CreateEndTime time.Time
+	//参数名称
+	ParamName string
+	//类型
+	Type string
 }
 
 func (dao *ProgConfigDao) SearchProgConfigs(condition *ProgConfigSearchCondition, rowbound *model.RowBound) (result []do.ProgConfig, count int, err error) {

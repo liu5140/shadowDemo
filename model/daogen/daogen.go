@@ -85,6 +85,7 @@ func DaoGenEntry() {
 	modelPath := ""
 	enPath := ""
 	outputService := ""
+	outputrouter := ""
 
 	flag.StringVar(&input, "i", "./model/do", "input files")
 	flag.StringVar(&modelPath, "m", "./model/model.go", "model.go")
@@ -92,6 +93,7 @@ func DaoGenEntry() {
 	flag.StringVar(&output, "o", "./model/dao", "output directory")
 	flag.StringVar(&enPath, "e", "./model/initial_model.go", "initial_model.go")
 	flag.StringVar(&outputService, "s", "./service", "output directory")
+	flag.StringVar(&outputrouter, "r", "./ACCServer", "output directory")
 
 	flag.Parse()
 
@@ -110,7 +112,11 @@ func DaoGenEntry() {
 	dao_template, err = template.New("dao").Funcs(template.FuncMap{
 		"LowerCaseFirstLetter": utils.LowerCaseFirstLetter,
 		"unescaped":            unescaped,
-	}).ParseFiles(templatePath+"/dao.tmpl", templatePath+"/dao_ext.tmpl", templatePath+"/service.tmpl")
+	}).ParseFiles(templatePath+"/dao.tmpl",
+		templatePath+"/dao_ext.tmpl",
+		templatePath+"/service.tmpl",
+		templatePath+"/router.tmpl",
+		templatePath+"/vo.tmpl")
 	if err != nil {
 		Log.Error(err)
 		return
@@ -133,7 +139,7 @@ func DaoGenEntry() {
 			base != "auth_key_do.go" &&
 			base != "init.go" {
 			Log.Infoln("======fpath==", fpath)
-			sti := do2dao(fpath, output, outputService)
+			sti := do2dao(fpath, output, outputService, outputrouter)
 			if len(sti.StructName) == 0 {
 				continue
 			}
@@ -172,7 +178,7 @@ type StructInfo struct {
 	FieldNames []string
 }
 
-func do2dao(dofile string, outpath string, outputService string) *StructInfo {
+func do2dao(dofile string, outpath string, outputService string, outputrouter string) *StructInfo {
 	fileContent, err := ioutil.ReadFile(dofile)
 	if err != nil {
 		Log.Error(err)
@@ -223,6 +229,14 @@ func do2dao(dofile string, outpath string, outputService string) *StructInfo {
 	outFileService := outputService + "/" + utils.ToSnakeCase(sti.StructName) + "_service.go"
 
 	executeTempl(sti, outFileService, "service.tmpl")
+
+	outFilerouter := outputrouter + "/router/" + utils.ToSnakeCase(sti.StructName) + "_router.go"
+
+	executeTempl(sti, outFilerouter, "router.tmpl")
+
+	outFileVo := outputrouter + "/router/vo/" + utils.ToSnakeCase(sti.StructName) + ".go"
+
+	executeTempl(sti, outFileVo, "vo.tmpl")
 
 	return sti
 }

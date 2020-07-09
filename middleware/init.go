@@ -3,6 +3,7 @@ package middleware
 import (
 	"shadowDemo/model"
 	modelc "shadowDemo/zframework/model"
+	_ "shadowDemo/zframework/security"
 
 	"shadowDemo/zframework/logger"
 )
@@ -16,6 +17,7 @@ var Log *logger.Logger
 
 func init() {
 	Log = logger.InitLog()
+	//security.RegisterUsernamePasswordResolver(security.USERNAME_PASSWORD_RESOLVER, newFormUsernamePasswordResolver)
 }
 
 type Profile struct {

@@ -7,6 +7,7 @@ type APIAccessResLog struct {
 	CreatedAt    *time.Time
 	UpdatedAt    *time.Time
 	DeletedAt    *time.Time
+	CreatedBy    string
 	RequestNo    string
 	MerchantNo   string
 	MerchantName string

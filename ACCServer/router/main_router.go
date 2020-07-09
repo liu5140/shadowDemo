@@ -54,15 +54,18 @@ func MainRouter() http.Handler {
 	//同iP 多少时间限制多少次访问
 	engine.Use(concurrentlimit.ConcurrentLimit(100, 5*time.Minute))
 	//jwt认证
-	engine.Use(middleware.JWTParse(hmacSampleSecret, 360000))
+	//engine.Use(middleware.JWTParse(hmacSampleSecret, 360000))
 	//登录用户校验（冻结，密码错误）
 	engine.Use(securitymiddleware.UsernamePasswordLoginFilter(loginPath))
 	//获取当前用户信息
-	engine.Use(middleware.ProfileResolver(setPlayer))
+	//engine.Use(middleware.ProfileResolver(setPlayer))
 	//谷歌验证码
 	engine.Use(middleware.GoogleTokenValidator(loginPath, getProfileID))
 	//普通验证码
 	//	engine.Use(middleware.CaptchaHandler("/pcc/captcha", server.ServerConfigInstance().AdminServer.ContextPath))
+	//验证权限
+	//engine.Use(middleware.Authorizer(server.ServerConfig.ServerName))
+
 	engine.Use(middleware.ErrorHandler())
 	router := engine.Group(server.ServerConfigInstance().AdminServer.ContextPath)
 	playerRouter(router)
@@ -70,6 +73,9 @@ func MainRouter() http.Handler {
 	webSocketRouter(router)
 	monitorRouter(router)
 	merchantRouter(router)
+	progConfigRouter(router)
+	aPIAccessReqLogRouter(router)
+	aPIAccessResLogRouter(router)
 	return engine
 }
 

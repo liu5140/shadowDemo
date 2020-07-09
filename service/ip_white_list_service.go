@@ -2,47 +2,80 @@ package service
 
 import (
 	"shadowDemo/model"
+	"shadowDemo/model/dao"
 	"shadowDemo/model/do"
+	modelc "shadowDemo/zframework/model"
 )
 
 type IPWhiteListService struct{}
 
-var ipWhiteListService *IPWhiteListService
+var iPWhiteListService *IPWhiteListService
 
 func NewIPWhiteListService() *IPWhiteListService {
-	if ipWhiteListService == nil {
+	if iPWhiteListService == nil {
 		l.Lock()
-		if ipWhiteListService == nil {
-			ipWhiteListService = &IPWhiteListService{}
+		if iPWhiteListService == nil {
+			iPWhiteListService = &IPWhiteListService{}
 		}
 		l.Unlock()
 	}
-	return ipWhiteListService
+	return iPWhiteListService
 }
 
-func (service *IPWhiteListService) CreateIPWhiteList(ipwhiteList *do.IPWhiteList) error {
-	return model.GetModel().IPWhiteListDao.Create(ipwhiteList)
+//创建
+func (service *IPWhiteListService) CreateIPWhiteList(iPWhiteList *do.IPWhiteList) (err error) {
+	return model.GetModel().IPWhiteListDao.Create(iPWhiteList)
 }
 
-func (service *IPWhiteListService) DeleteIPWhiteList(ipwhiteList *do.IPWhiteList) error {
-	return model.GetModel().IPWhiteListDao.Delete(ipwhiteList)
+//通过id获取详情
+func (service *IPWhiteListService) GetIPWhiteListByID(id int64) (iPWhiteList *do.IPWhiteList, err error) {
+	iPWhiteList.ID = id
+	err = model.GetModel().IPWhiteListDao.Get(iPWhiteList)
+	if err != nil {
+		Log.Error(err)
+		return iPWhiteList, err
+	}
+	return iPWhiteList, err
 }
 
-func (service *IPWhiteListService) GetIPWhiteListByAccountNo(accountNo string) (result []*do.IPWhiteList, err error) {
-	return model.GetModel().IPWhiteListDao.Find(&do.IPWhiteList{
-		AccountNo: accountNo,
-		Enable:    true,
-	})
+//通过id删除
+func (service *IPWhiteListService) DeleteIPWhiteListByID(id int64) (err error) {
+	if model.GetModel().IPWhiteListDao.Delete(&do.IPWhiteList{ID: id}); err != nil {
+		Log.Error(err)
+		return err
+	}
+	return err
 }
 
-func (service *IPWhiteListService) GetAllIPWhiteListByAccountNo(accountNo string) (result []*do.IPWhiteList, err error) {
-	return model.GetModel().IPWhiteListDao.Find(&do.IPWhiteList{
-		AccountNo: accountNo,
-	})
+func (service *IPWhiteListService) GetIPWhiteListByAccountNo(account string) (request []*do.IPWhiteList, err error) {
+
+	return model.GetModel().IPWhiteListDao.Find(&do.IPWhiteList{AccountNo: account})
 }
 
-// func (service *IPWhiteListService) UpdateIPWhiteListByAccountNo(accountNo string, enable bool) error {
-// 	db := datasource.DatasourceServiceInstance(datasource.DATASOURCE_MANAGER).Datasource()
-// 	bccIPWhiteListDao := dao.NewBccIPWhiteListDao(db)
-// 	return bccIPWhiteListDao.UpdateIPWhiteListByAccountNo(accountNo, enable)
-// }
+//通过id更新
+func (service *IPWhiteListService) UpdateIPWhiteList(id int64, attrs map[string]interface{}) (err error) {
+	if err = model.GetModel().IPWhiteListDao.Updates(id, attrs); err != nil {
+		Log.Error(err)
+		return err
+	}
+	return err
+}
+
+//查询
+func (service *IPWhiteListService) SearchIPWhiteListPaging(condition *dao.IPWhiteListSearchCondition, pageNum int, pageSize int) (request []do.IPWhiteList, count int, err error) {
+	rowbound := modelc.NewRowBound(pageNum, pageSize)
+	return service.searchIPWhiteList(condition, &rowbound)
+}
+
+func (service *IPWhiteListService) SearchIPWhiteListWithOutPaging(condition *dao.IPWhiteListSearchCondition) (request []do.IPWhiteList, count int, err error) {
+	return service.searchIPWhiteList(condition, nil)
+}
+
+func (service *IPWhiteListService) searchIPWhiteList(condition *dao.IPWhiteListSearchCondition, rowbound *modelc.RowBound) (request []do.IPWhiteList, count int, err error) {
+	result, count, err := model.GetModel().IPWhiteListDao.SearchIPWhiteLists(condition, rowbound)
+	if err != nil {
+		Log.Error(err)
+		return nil, 0, err
+	}
+	return result, count, err
+}

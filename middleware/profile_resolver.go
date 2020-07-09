@@ -16,6 +16,7 @@ func ProfileResolver(callback func(c *gin.Context)) gin.HandlerFunc {
 			Log.Panic("authentication is nil")
 		}
 		if secureToken, ok := token.(*security.TUsernamePasswordAuthenticationToken); ok && secureToken.IsAuthenticated() {
+			Log.Infoln("=============================")
 			callback(c)
 		}
 	}

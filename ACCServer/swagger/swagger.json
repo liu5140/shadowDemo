@@ -1,0 +1,2738 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "shadowDemo restful API.",
+    "version": "1.0"
+  },
+  "host": "localhost:8030",
+  "basePath": "/acc",
+  "paths": {
+    "/aPIAccessReqLog": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessReqLog"
+        ],
+        "summary": "详情;",
+        "operationId": "getAPIAccessReqLog",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getAPIAccessReqLogResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessReqLog"
+        ],
+        "summary": "修改;",
+        "operationId": "updateAPIAccessReqLog",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessReqLog"
+        ],
+        "summary": "创建;",
+        "operationId": "createAPIAccessReqLog",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessReqLog"
+        ],
+        "summary": "删除;",
+        "operationId": "deleteAPIAccessReqLog",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/aPIAccessReqLogs": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessReqLog"
+        ],
+        "summary": "查询列表;",
+        "operationId": "searchAPIAccessReqLog",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CreateEndTime": {
+                  "description": "创建截止时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "CreateStartTime": {
+                  "description": "创建开始时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IDS": {
+                  "description": "id",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "PageNum": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PageSize": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/searchAPIAccessReqLogResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/aPIAccessResLog": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessResLog"
+        ],
+        "summary": "详情;",
+        "operationId": "getAPIAccessResLog",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getAPIAccessResLogResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessResLog"
+        ],
+        "summary": "修改;",
+        "operationId": "updateAPIAccessResLog",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessResLog"
+        ],
+        "summary": "创建;",
+        "operationId": "createAPIAccessResLog",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessResLog"
+        ],
+        "summary": "删除;",
+        "operationId": "deleteAPIAccessResLog",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/aPIAccessResLogs": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "aPIAccessResLog"
+        ],
+        "summary": "查询列表;",
+        "operationId": "searchAPIAccessResLog",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CreateEndTime": {
+                  "description": "创建截止时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "CreateStartTime": {
+                  "description": "创建开始时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IDS": {
+                  "description": "id",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "PageNum": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PageSize": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/searchAPIAccessResLogResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/iPWhiteList": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "iPWhiteList"
+        ],
+        "summary": "详情;",
+        "operationId": "getIPWhiteList",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getIPWhiteListResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "iPWhiteList"
+        ],
+        "summary": "修改;",
+        "operationId": "updateIPWhiteList",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "iPWhiteList"
+        ],
+        "summary": "创建;",
+        "operationId": "createIPWhiteList",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "iPWhiteList"
+        ],
+        "summary": "删除;",
+        "operationId": "deleteIPWhiteList",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/iPWhiteLists": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "iPWhiteList"
+        ],
+        "summary": "查询列表;",
+        "operationId": "searchIPWhiteList",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CreateEndTime": {
+                  "description": "创建截止时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "CreateStartTime": {
+                  "description": "创建开始时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IDS": {
+                  "description": "id",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "PageNum": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PageSize": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/searchIPWhiteListResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "session"
+        ],
+        "summary": "玩家登录系统;",
+        "operationId": "login",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "x-go-name": "Password"
+                },
+                "username": {
+                  "type": "string",
+                  "x-go-name": "Username"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/loginResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "session"
+        ],
+        "summary": "玩家登出系统;",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/mock/token": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "session"
+        ],
+        "summary": "未登陆获取一个默认token;",
+        "operationId": "mockToken",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/loginResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/order": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "order"
+        ],
+        "summary": "详情;",
+        "operationId": "getOrder",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getOrderResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "order"
+        ],
+        "summary": "修改;",
+        "operationId": "updateOrder",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "order"
+        ],
+        "summary": "创建;",
+        "operationId": "createOrder",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "order"
+        ],
+        "summary": "删除;",
+        "operationId": "deleteOrder",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "order"
+        ],
+        "summary": "查询列表;",
+        "operationId": "searchOrder",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CreateEndTime": {
+                  "description": "创建截止时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "CreateStartTime": {
+                  "description": "创建开始时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IDS": {
+                  "description": "id",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "PageNum": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PageSize": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/searchOrderResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/player": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "player"
+        ],
+        "summary": "创建玩家;",
+        "operationId": "createPlayer",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Account": {
+                  "description": "帐号",
+                  "type": "string"
+                },
+                "LoginPassword": {
+                  "description": "登录密码",
+                  "type": "string"
+                },
+                "PhoneCode": {
+                  "description": "帐号",
+                  "type": "string"
+                },
+                "Recommend": {
+                  "description": "推荐人的推广码, (如果玩家是被推荐的）",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/progConfig": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "progConfig"
+        ],
+        "summary": "详情;",
+        "operationId": "getProgConfig",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getProgConfigResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "progConfig"
+        ],
+        "summary": "删除;",
+        "operationId": "deleteProgConfig",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "progConfig"
+        ],
+        "summary": "查询列表;",
+        "operationId": "searchProgConfig",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CreateEndTime": {
+                  "description": "创建截止时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "CreateStartTime": {
+                  "description": "创建开始时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IDS": {
+                  "description": "id",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "PageNum": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PageSize": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "ParamName": {
+                  "description": "参数名称",
+                  "type": "string"
+                },
+                "Type": {
+                  "description": "类型",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/searchProgConfigResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/server": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "server"
+        ],
+        "summary": "获取服务器信息;",
+        "operationId": "monitorServer",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/monitorResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/sms/logins": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "session"
+        ],
+        "summary": "玩家短信登录系统;",
+        "operationId": "smslogin",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/loginResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "user"
+        ],
+        "summary": "详情;",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getUserResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "user"
+        ],
+        "summary": "修改;",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "user"
+        ],
+        "summary": "创建;",
+        "operationId": "createUser",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      },
+      "delete": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "user"
+        ],
+        "summary": "删除;",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "ID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/genericSuccess"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    },
+    "/users": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "oauth": [
+              "read",
+              "write"
+            ]
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "tags": [
+          "user"
+        ],
+        "summary": "查询列表;",
+        "operationId": "searchUser",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "CreateEndTime": {
+                  "description": "创建截止时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "CreateStartTime": {
+                  "description": "创建开始时间",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "IDS": {
+                  "description": "id",
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                },
+                "PageNum": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "PageSize": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/searchUserResponse"
+          },
+          "default": {
+            "$ref": "#/responses/genericError"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "APIAccessReqLog": {
+      "type": "object",
+      "properties": {
+        "APIURL": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "MerchantName": {
+          "type": "string"
+        },
+        "MerchantNo": {
+          "type": "string"
+        },
+        "Method": {
+          "type": "string"
+        },
+        "OrderNo": {
+          "type": "string"
+        },
+        "Request": {
+          "type": "string"
+        },
+        "RequestNo": {
+          "type": "string"
+        },
+        "RequestTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "x-go-package": "shadowDemo/model/do"
+    },
+    "APIAccessResLog": {
+      "type": "object",
+      "properties": {
+        "APIURL": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "IPAddress": {
+          "type": "string"
+        },
+        "MerchantName": {
+          "type": "string"
+        },
+        "MerchantNo": {
+          "type": "string"
+        },
+        "Method": {
+          "type": "string"
+        },
+        "OrderNo": {
+          "type": "string"
+        },
+        "Request": {
+          "type": "string"
+        },
+        "RequestNo": {
+          "type": "string"
+        },
+        "RequestTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Response": {
+          "type": "string"
+        },
+        "ResponseTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "x-go-package": "shadowDemo/model/do"
+    },
+    "AccountState": {
+      "type": "integer",
+      "format": "int64",
+      "x-go-package": "shadowDemo/zframework/model"
+    },
+    "CreateSecureTokenResponseBody": {
+      "type": "object",
+      "properties": {
+        "Token": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "Decimal": {
+      "description": "number = value * 10 ^ exp",
+      "type": "object",
+      "title": "Decimal represents a fixed-point decimal. It is immutable.",
+      "x-go-package": "github.com/shopspring/decimal"
+    },
+    "GenericMessageBody": {
+      "type": "object",
+      "properties": {
+        "Code": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Msg": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "GetAPIAccessReqLogResponseBody": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "$ref": "#/definitions/APIAccessReqLog"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "GetAPIAccessResLogResponseBody": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "$ref": "#/definitions/APIAccessResLog"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "GetIPWhiteListResponseBody": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "$ref": "#/definitions/IPWhiteList"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "GetOrderResponseBody": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "$ref": "#/definitions/Order"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "GetProgConfigResponseBody": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "$ref": "#/definitions/ProgConfig"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "GetUserResponseBody": {
+      "type": "object",
+      "properties": {
+        "Result": {
+          "$ref": "#/definitions/User"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "IPWhiteList": {
+      "type": "object",
+      "properties": {
+        "AccountName": {
+          "description": "AccountType AccountType",
+          "type": "string"
+        },
+        "AccountNo": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Enable": {
+          "type": "boolean"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "IP": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "x-go-package": "shadowDemo/model/do"
+    },
+    "LoginResponseBody": {
+      "type": "object",
+      "properties": {
+        "Account": {
+          "type": "string"
+        },
+        "Balance": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "Birthday": {
+          "description": "生日",
+          "type": "string",
+          "format": "date-time"
+        },
+        "Code": {
+          "description": "代号",
+          "type": "integer",
+          "format": "int64"
+        },
+        "Country": {
+          "description": "国家地区p",
+          "type": "string"
+        },
+        "HostIndex": {
+          "description": "在用户信息的接口里加个字段吧 hostIndex  (不知道干啥)",
+          "type": "integer",
+          "format": "int64"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "IsSecurePwdSet": {
+          "type": "boolean"
+        },
+        "Mobile": {
+          "description": "手机",
+          "type": "string"
+        },
+        "NickName": {
+          "type": "string"
+        },
+        "Recommend": {
+          "type": "string"
+        },
+        "Sex": {
+          "$ref": "#/definitions/Sex"
+        },
+        "Token": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "Abnormal": {
+          "type": "boolean"
+        },
+        "AccountName": {
+          "type": "string"
+        },
+        "AccountNo": {
+          "type": "string"
+        },
+        "ApiVersion": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Bank": {
+          "type": "string"
+        },
+        "BankCardCvv": {
+          "type": "string"
+        },
+        "BankCardExpire": {
+          "type": "string"
+        },
+        "BankCardNo": {
+          "type": "string"
+        },
+        "CardOwner": {
+          "type": "string"
+        },
+        "CardOwnerCert": {
+          "description": "PayType             EnumPayType",
+          "type": "string"
+        },
+        "CardOwnerPhone": {
+          "type": "string"
+        },
+        "ChannelCode": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "ClientIP": {
+          "type": "string"
+        },
+        "CodeMerchantOrder": {
+          "type": "boolean"
+        },
+        "CreateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "CustomerNo": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Information": {
+          "type": "string"
+        },
+        "IsTest": {
+          "description": "Payment             BccPayment `gorm:\"ForeignKey:PaymentID\"`",
+          "type": "boolean"
+        },
+        "MerchantCallbackURL": {
+          "type": "string"
+        },
+        "MerchantID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "MerchantName": {
+          "type": "string"
+        },
+        "MerchantNo": {
+          "type": "string"
+        },
+        "MerchantOrderNo": {
+          "type": "string"
+        },
+        "MerchantSecretKey": {
+          "type": "string"
+        },
+        "MerchantWithdrawFee": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "Operator": {
+          "type": "string"
+        },
+        "OperatorNo": {
+          "type": "string"
+        },
+        "OrderNo": {
+          "type": "string"
+        },
+        "OrderPrice": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "OrderRealPrice": {
+          "$ref": "#/definitions/Decimal"
+        },
+        "PaymentID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Province": {
+          "type": "string"
+        },
+        "RelatedOrderNo": {
+          "description": "OrderType           OperateType     // 充值=1，提现=2\nOrderState          OrderState",
+          "type": "string"
+        },
+        "Remark": {
+          "type": "string"
+        },
+        "RemitType": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "RiskLevel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Subbranch": {
+          "type": "string"
+        },
+        "UpdateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "x-go-package": "shadowDemo/model/do"
+    },
+    "ProgConfig": {
+      "type": "object",
+      "properties": {
+        "Comment": {
+          "type": "string"
+        },
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedBy": {
+          "description": "创建人",
+          "type": "string"
+        },
+        "Disabled": {
+          "type": "boolean"
+        },
+        "Encrypted": {
+          "type": "boolean"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ParamName": {
+          "type": "string"
+        },
+        "ParamValue": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "x-go-package": "shadowDemo/model/do"
+    },
+    "SearchAPIAccessReqLogResponseBody": {
+      "type": "object",
+      "properties": {
+        "Count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/APIAccessReqLog"
+          }
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "SearchAPIAccessResLogResponseBody": {
+      "type": "object",
+      "properties": {
+        "Count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/APIAccessResLog"
+          }
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "SearchIPWhiteListResponseBody": {
+      "type": "object",
+      "properties": {
+        "Count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IPWhiteList"
+          }
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "SearchOrderResponseBody": {
+      "type": "object",
+      "properties": {
+        "Count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Order"
+          }
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "SearchProgConfigResponseBody": {
+      "type": "object",
+      "properties": {
+        "Count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProgConfig"
+          }
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "SearchUserResponseBody": {
+      "type": "object",
+      "properties": {
+        "Count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User"
+          }
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "Sex": {
+      "type": "integer",
+      "format": "int64",
+      "x-go-package": "shadowDemo/model"
+    },
+    "UsageStat": {
+      "type": "object",
+      "properties": {
+        "Free": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "Fstype": {
+          "type": "string"
+        },
+        "InodesFree": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "InodesTotal": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "InodesUsed": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "InodesUsedPercent": {
+          "type": "number",
+          "format": "double"
+        },
+        "Path": {
+          "type": "string"
+        },
+        "Total": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "Used": {
+          "type": "integer",
+          "format": "uint64"
+        },
+        "UsedPercent": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "x-go-package": "shadowDemo/ACCServer/router/vo"
+    },
+    "User": {
+      "description": "sagger:model",
+      "type": "object",
+      "properties": {
+        "CreatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "CreatedBy": {
+          "type": "string"
+        },
+        "Creator": {
+          "description": "来源终端(PC/后台注册/导入玩家/手机端/手机端H5/手机端ANDROID/手机端IOS)\n创建人ID",
+          "type": "integer",
+          "format": "int64"
+        },
+        "DeletedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "LastLogUrl": {
+          "description": "最后登录的访问链接",
+          "type": "string"
+        },
+        "LastLoginAt": {
+          "description": "最后登录时间",
+          "type": "string",
+          "format": "date-time"
+        },
+        "LastLoginIP": {
+          "description": "最后登录IP",
+          "type": "string"
+        },
+        "LastLoginIPAddr": {
+          "description": "最后登录ip地址",
+          "type": "string"
+        },
+        "Recommend": {
+          "description": "设备信息\n钱包\nWallet do.Wallet `gorm:\"ForeignKey:WalletID\" gorm:\"association_foreignkey:UserID\" json:\"wallet\"`",
+          "type": "string"
+        },
+        "Sca": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "State": {
+          "$ref": "#/definitions/AccountState"
+        },
+        "StateTime": {
+          "description": "帐号状态,  正常/锁定/冻结/停用\n状态修改时间",
+          "type": "string",
+          "format": "date-time"
+        },
+        "UpdatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "WalletID": {
+          "description": "钱包ID",
+          "type": "integer",
+          "format": "int64"
+        },
+        "account": {
+          "description": "帐号",
+          "type": "string",
+          "x-go-name": "Account"
+        },
+        "address": {
+          "description": "住址",
+          "type": "string",
+          "x-go-name": "Address"
+        },
+        "birthday": {
+          "description": "生日",
+          "type": "string",
+          "format": "date-time",
+          "x-go-name": "Birthday"
+        },
+        "country": {
+          "description": "性别\n国家地区",
+          "type": "string",
+          "x-go-name": "Country"
+        },
+        "email": {
+          "description": "邮件",
+          "type": "string",
+          "x-go-name": "Email"
+        },
+        "loginPassword": {
+          "description": "登录密码",
+          "type": "string",
+          "x-go-name": "LoginPassword"
+        },
+        "loginPasswordMd5": {
+          "description": "登录密码的MD5加密字符串",
+          "type": "string",
+          "x-go-name": "LoginPasswordMd5"
+        },
+        "lsSecurePwdSet": {
+          "description": "是否设置安全密码",
+          "type": "boolean",
+          "x-go-name": "IsSecurePwdSet"
+        },
+        "mobile": {
+          "description": "手机",
+          "type": "string",
+          "x-go-name": "Mobile"
+        },
+        "nickname": {
+          "description": "真实姓名",
+          "type": "string",
+          "x-go-name": "NickName"
+        },
+        "phoneCode": {
+          "description": "默认地址",
+          "type": "string",
+          "x-go-name": "PhoneCode"
+        },
+        "qq": {
+          "description": "Qq",
+          "type": "string",
+          "x-go-name": "Qq"
+        },
+        "recommanderPCode": {
+          "description": "推荐人的推广码, (如果玩家是被推荐的）",
+          "type": "string",
+          "x-go-name": "RecommanderPCode"
+        },
+        "registIP": {
+          "description": "注册IP",
+          "type": "string",
+          "x-go-name": "RegistIP"
+        },
+        "registURL": {
+          "description": "注册URL",
+          "type": "string",
+          "x-go-name": "RegistURL"
+        },
+        "securePassword": {
+          "description": "安全密码",
+          "type": "string",
+          "x-go-name": "SecurePassword"
+        },
+        "skype": {
+          "description": "skype",
+          "type": "string",
+          "x-go-name": "Skype"
+        },
+        "timeZone": {
+          "description": "时区",
+          "type": "string",
+          "x-go-name": "TimeZone"
+        },
+        "userAgentLevelID": {
+          "description": "代理层级ID",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UserAgentLevelID"
+        },
+        "userLevelID": {
+          "description": "层级ID",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "UserLevelID"
+        },
+        "wechat": {
+          "description": "微信",
+          "type": "string",
+          "x-go-name": "Wechat"
+        }
+      },
+      "x-go-package": "shadowDemo/model/do"
+    }
+  },
+  "responses": {
+    "CreateSecureTokenResponse": {
+      "description": "创建安全令牌",
+      "schema": {
+        "$ref": "#/definitions/CreateSecureTokenResponseBody"
+      }
+    },
+    "genericError": {
+      "description": "错误消息",
+      "schema": {
+        "$ref": "#/definitions/GenericMessageBody"
+      }
+    },
+    "genericSuccess": {
+      "description": "成功消息",
+      "schema": {
+        "$ref": "#/definitions/GenericMessageBody"
+      }
+    },
+    "getAPIAccessReqLogResponse": {
+      "description": "详情出参",
+      "schema": {
+        "$ref": "#/definitions/GetAPIAccessReqLogResponseBody"
+      }
+    },
+    "getAPIAccessResLogResponse": {
+      "description": "详情出参",
+      "schema": {
+        "$ref": "#/definitions/GetAPIAccessResLogResponseBody"
+      }
+    },
+    "getIPWhiteListResponse": {
+      "description": "详情出参",
+      "schema": {
+        "$ref": "#/definitions/GetIPWhiteListResponseBody"
+      }
+    },
+    "getOrderResponse": {
+      "description": "详情出参",
+      "schema": {
+        "$ref": "#/definitions/GetOrderResponseBody"
+      }
+    },
+    "getProgConfigResponse": {
+      "schema": {
+        "$ref": "#/definitions/GetProgConfigResponseBody"
+      }
+    },
+    "getUserResponse": {
+      "description": "详情出参",
+      "schema": {
+        "$ref": "#/definitions/GetUserResponseBody"
+      }
+    },
+    "loginResponse": {
+      "description": "登录这类返回值",
+      "schema": {
+        "$ref": "#/definitions/LoginResponseBody"
+      }
+    },
+    "monitorResponse": {
+      "description": "登录这类返回值",
+      "headers": {
+        "CpuAvg15": {
+          "type": "number",
+          "format": "double",
+          "description": "Load Avg 15"
+        },
+        "CpuAvg5": {
+          "type": "number",
+          "format": "double",
+          "description": "Load Avg 5"
+        },
+        "CpuNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": "核心数"
+        },
+        "CpuUsed": {
+          "type": "number",
+          "format": "double",
+          "description": "CPU使用率"
+        },
+        "Disklist": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UsageStat"
+          },
+          "description": "磁盘列表"
+        },
+        "GoFree": {
+          "type": "integer",
+          "format": "uint64",
+          "description": "go 内存"
+        },
+        "GoHome": {
+          "type": "string",
+          "description": "安装路径"
+        },
+        "GoName": {
+          "type": "string",
+          "description": "语言环境"
+        },
+        "GoRunTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "运行时长"
+        },
+        "GoStartTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "启动时间"
+        },
+        "GoTotal": {
+          "type": "integer",
+          "format": "uint64",
+          "description": "go 内存"
+        },
+        "GoUsage": {
+          "type": "number",
+          "format": "double"
+        },
+        "GoUsed": {
+          "type": "integer",
+          "format": "uint64",
+          "description": "go用的内存"
+        },
+        "GoUserDir": {
+          "type": "string",
+          "description": "项目路径"
+        },
+        "GoVersion": {
+          "type": "string",
+          "description": "版本"
+        },
+        "MemFree": {
+          "type": "integer",
+          "format": "uint64",
+          "description": "剩余内存"
+        },
+        "MemTotal": {
+          "type": "integer",
+          "format": "uint64",
+          "description": "总内存"
+        },
+        "MemUsage": {
+          "type": "number",
+          "format": "double",
+          "description": "使用率"
+        },
+        "MemUsed": {
+          "type": "integer",
+          "format": "uint64",
+          "description": "已用内存"
+        },
+        "SysComputerIp": {
+          "type": "string",
+          "description": "服务器IP"
+        },
+        "SysComputerName": {
+          "type": "string",
+          "description": "服务器名称"
+        },
+        "SysOsArch": {
+          "type": "string",
+          "description": "系统架构"
+        },
+        "SysOsName": {
+          "type": "string",
+          "description": "操作系统"
+        }
+      }
+    },
+    "searchAPIAccessReqLogResponse": {
+      "description": "查询列表",
+      "schema": {
+        "$ref": "#/definitions/SearchAPIAccessReqLogResponseBody"
+      }
+    },
+    "searchAPIAccessResLogResponse": {
+      "description": "查询列表",
+      "schema": {
+        "$ref": "#/definitions/SearchAPIAccessResLogResponseBody"
+      }
+    },
+    "searchIPWhiteListResponse": {
+      "description": "查询列表",
+      "schema": {
+        "$ref": "#/definitions/SearchIPWhiteListResponseBody"
+      }
+    },
+    "searchOrderResponse": {
+      "description": "查询列表",
+      "schema": {
+        "$ref": "#/definitions/SearchOrderResponseBody"
+      }
+    },
+    "searchProgConfigResponse": {
+      "description": "活动列表",
+      "schema": {
+        "$ref": "#/definitions/SearchProgConfigResponseBody"
+      }
+    },
+    "searchUserResponse": {
+      "description": "查询列表",
+      "schema": {
+        "$ref": "#/definitions/SearchUserResponseBody"
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
