@@ -31,7 +31,7 @@ func AccessLogHandler() gin.HandlerFunc {
 			Log.Error(err)
 		}
 
-		logService := service.NewAPIAccessLogService()
+		reqLogService := service.NewAPIAccessReqLogService()
 
 		urlPath := c.Request.URL.Path
 		reqdatatype := reflect.TypeOf(req)
@@ -51,7 +51,8 @@ func AccessLogHandler() gin.HandlerFunc {
 			RequestTime:  time.Now(),
 			OrderNo:      orderNo,
 		}
-		logService.LogRequest(request)
+
+		reqLogService.CreateAPIAccessReqLog(request)
 
 		c.Next()
 		//记录response
@@ -89,7 +90,9 @@ func AccessLogHandler() gin.HandlerFunc {
 			resJSON = string(resJ)
 		}
 
-		logService.LogResponse(&do.APIAccessResLog{
+		resLogService := service.NewAPIAccessResLogService()
+
+		resLogService.CreateAPIAccessResLog(&do.APIAccessResLog{
 			RequestNo:    request.RequestNo,
 			Response:     resJSON,
 			ResponseTime: time.Now(),
