@@ -3,36 +3,36 @@ package service
 import (
 	"errors"
 	"shadowDemo/model"
+	"shadowDemo/model/dao"
 	"shadowDemo/model/do"
-	"shadowDemo/zframework/datasource"
+	"shadowDemo/zframework/bizerr"
 	shadowsecurity "shadowDemo/zframework/security"
 	"strings"
 
 	"github.com/sirupsen/logrus"
-
 )
 
-type RoleService struct {
+type UpmsRoleService struct {
 }
 
-var roleTreeService *RoleService
+var upmsRoleService *UpmsRoleService
 
-func NewRoleService() *RoleService {
-	if roleTreeService == nil {
+func NewUpmsRoleService() *UpmsRoleService {
+	if upmsRoleService == nil {
 		l.Lock()
-		if roleTreeService == nil {
-			roleTreeService = &RoleService{}
+		if upmsRoleService == nil {
+			upmsRoleService = &UpmsRoleService{}
 		}
 		l.Unlock()
 	}
-	return roleTreeService
+	return upmsRoleService
 }
 
-func (service RoleService) GetRoleByRoleCodes(site string, roleCode string) ([]do.UpmsRole, error) {
+func (service *UpmsRoleService) GetRoleByRoleCodes(site string, roleCode string) ([]do.UpmsRole, error) {
 	return model.GetModel().UpmsRoleDao.GetRolesByCodes(strings.Split(roleCode, ","))
 }
 
-func (service RoleService) GetRoleByID(site string, id int64) (do.UpmsRole, error) {
+func (service *UpmsRoleService) GetRoleByID(site string, id int64) (do.UpmsRole, error) {
 	role := do.UpmsRole{
 		ID: id,
 	}
@@ -41,51 +41,32 @@ func (service RoleService) GetRoleByID(site string, id int64) (do.UpmsRole, erro
 }
 
 //SearchRole 查询所有角色
-func (service RoleService) SearchRole(site string) (result []*do.UpmsRole, err error) {
+func (service *UpmsRoleService) SearchRole(site string) (result []*do.UpmsRole, err error) {
 	return model.GetModel().UpmsRoleDao.Find(&do.UpmsRole{})
 }
 
 //CreateRole 创建角色
-func (service RoleService) CreateRole(site string, m *do.UpmsRole) (err error) {
+func (service *UpmsRoleService) CreateRole(site string, m *do.UpmsRole) (err error) {
 	urdao := model.GetModel().UpmsRoleDao
 	var role do.UpmsRole
 	role.Code = "ROLE_" + m.Code
 	//增加校验 名字和code都不能一样
-	if ok := urdao.Existed(&role); ok {
-		return RoleExistError{
-			error: errors.New("role is exist"),
-		}
+	if ok := urdao.Found(&role); ok {
+		return bizerr.GenErr("key_role_exist")
 	}
 	role.Name = m.Name
-	role.MaxAmount = m.MaxAmount
 	//赋予角色初始化请求权限
 	if ok := shadowsecurity.GetCasbinEnforcer().AddGroupingPolicy(role.Code, "ROLE_BASIC", site); !ok {
 		Log.WithFields(logrus.Fields{
 			"rolename": m.Name,
 		}).Warn("failed to assign basic role to role in db ")
 	}
-	// menus := shadowsecurity.GetCasbinEnforcer().GetFilteredNamedPolicy("p", 0, "ROLE_BASIC", "sitea")
-
-	// for _, v := range menus {
-	// 	if ok := shadowsecurity.GetCasbinEnforcer().AddPolicy(role.Code, site, v[2], v[3], "allow"); !ok {
-	// 		err = errors.New("failed to assign role to role in db ")
-	// 		Log.WithField("name", m.Name).Error(err)
-	// 		return err
-	// 	}
-	// }
-	// err = shadowsecurity.GetCasbinEnforcer().LoadPolicy()
-	// if err != nil{
-	// 	Log.Error(err)
-	// 	return
-	// }
 	return urdao.Create(&role)
 }
 
 //DeleteRole 删除角色
-func (service RoleService) DeleteRole(site string, m *model.Role) (err error) {
+func (service *UpmsRoleService) DeleteRole(site string, m *do.UpmsRole) (err error) {
 	//coredb := datasource.ShardingDatasourceInstance().SDatasource("core")
-	db := datasource.ShardingDatasourceInstance().SDatasource(site)
-	urdao := dao.NewRoleDao(db)
 	//增加判断，如果改角色下面存在有效账号则不能进行删除
 	// adminDao := dao.NewAdminDao(coredb)
 	// adminList, err := adminDao.Find(&model.Admin{RoleID: m.ID, State: model.Normal})
@@ -100,11 +81,7 @@ func (service RoleService) DeleteRole(site string, m *model.Role) (err error) {
 
 	adminsList := shadowsecurity.GetCasbinEnforcer().GetFilteredGroupingPolicy(1, m.Code, site)
 	if len(adminsList) > 0 {
-		err = RoleAccountExistError{
-			error: errors.New("is exist account no can delete "),
-		}
-		Log.Error(err)
-		return
+		return bizerr.GenErr("key_role_account_exist")
 	}
 
 	if err = shadowsecurity.GetCasbinEnforcer().GetAdapter().RemoveFilteredPolicy("p", "p", 0, m.Code, site); err != nil {
@@ -119,7 +96,7 @@ func (service RoleService) DeleteRole(site string, m *model.Role) (err error) {
 		//	return err
 	}
 
-	err = urdao.Delete(m)
+	err = model.GetModel().UpmsRoleDao.Delete(m)
 	if err != nil {
 		return err
 	}
@@ -128,15 +105,13 @@ func (service RoleService) DeleteRole(site string, m *model.Role) (err error) {
 }
 
 //UpdateRole 修改角色
-func (service RoleService) UpdateRole(site string, m *model.Role) (err error) {
-	db := datasource.ShardingDatasourceInstance().SDatasource(site)
-	urdao := dao.NewRoleDao(db)
-	return urdao.Updates(m.ID, map[string]interface{}{"name": m.Name, "max_amount": m.MaxAmount})
+func (service *UpmsRoleService) UpdateRole(site string, m *do.UpmsRole) (err error) {
+	return model.GetModel().UpmsRoleDao.Updates(m.ID, map[string]interface{}{"name": m.Name})
 }
 
-func (service RoleService) Pmenu(mdao *dao.MenuDao, menu model.Menu, menuMap map[int64]model.Menu) (err error) {
+func (service *UpmsRoleService) Pmenu(mdao *dao.UpmsMenuDao, menu do.UpmsMenu , menuMap map[int64]do.UpmsMenu) (err error) {
 	if _, ok := menuMap[menu.PNodeID]; !ok && menu.PNodeID != 1 {
-		pmenu := &model.Menu{NodeID: menu.PNodeID}
+		pmenu := &do.UpmsMenu{NodeID: menu.PNodeID}
 		err := mdao.FindOne(pmenu)
 		if err != nil {
 			Log.Error(err)
@@ -155,16 +130,15 @@ func (service RoleService) Pmenu(mdao *dao.MenuDao, menu model.Menu, menuMap map
 }
 
 //SetPermission 权限的赋予
-func (service RoleService) SetPermission(site string, m *model.Role, menu []model.Menu) (err error) {
+func (service *UpmsRoleService) SetPermission(site string, m *do.UpmsRole, menu []do.UpmsMenu) (err error) {
 	if menu == nil && len(menu) == 0 {
 		err = errors.New("menu is nil ")
 		Log.Error(err)
 		return err
 	}
 	//查询赋权菜单的父级菜单
-	db := datasource.ShardingDatasourceInstance().SDatasource("core")
-	mdao := dao.NewMenuDao(db)
-	menuMap := make(map[int64]model.Menu)
+	mdao := model.GetModel().UpmsMenuDao
+	menuMap := make(map[int64]do.UpmsMenu)
 	for _, v := range menu {
 		err = service.Pmenu(mdao, v, menuMap)
 		if err != nil {
@@ -177,10 +151,6 @@ func (service RoleService) SetPermission(site string, m *model.Role, menu []mode
 		Log.WithField("name", m.Name).Error(err)
 		// return err
 	}
-	// if err := shadowsecurity.GetCasbinEnforcer().GetAdapter().RemovePolicy("p", "p", []string{m.Code, site}); err != nil {
-	// 	Log.WithField("name", m.Name).Error(err)
-	// 	// return err
-	// }
 	if err := shadowsecurity.GetCasbinEnforcer().GetAdapter().RemovePolicy("g", "g", []string{m.Code, "ROLE_BASIC", site}); err != nil {
 		Log.WithField("name", m.Name).Error(err)
 		// return err
@@ -205,19 +175,13 @@ func (service RoleService) SetPermission(site string, m *model.Role, menu []mode
 			"rolename": m.Name,
 		}).Warn("failed to assign basic role to role in db ")
 	}
-	// err = shadowsecurity.GetCasbinEnforcer().LoadPolicy()
-	// if err != nil{
-	// 	Log.Error(err)
-	// 	return
-	// }
 	return nil
 }
 
 //SelectPermission 查询某个角色的权限
-func (service RoleService) SelectPermission(site string, role *model.Role) (result []model.Menu, err error) {
-	coredb := datasource.ShardingDatasourceInstance().SDatasource("core")
-	muDao := dao.NewMenuDao(coredb)
-	allMenus, err := muDao.Find(&model.Menu{})
+func (service *UpmsRoleService) SelectPermission(site string, role *do.UpmsRole) (result []*do.UpmsMenu, err error) {
+	muDao := model.GetModel().UpmsMenuDao
+	allMenus, err := muDao.Find(&do.UpmsMenu{})
 	if err != nil {
 		Log.Error(err)
 		return nil, err
@@ -229,6 +193,5 @@ func (service RoleService) SelectPermission(site string, role *model.Role) (resu
 			allMenus[i].Selected = true
 		}
 	}
-
 	return allMenus, nil
 }

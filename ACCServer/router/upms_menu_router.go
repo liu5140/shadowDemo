@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"shadowDemo/ACCServer/router/vo"
 	"shadowDemo/middleware"
-	"shadowDemo/model/dao"
 	"shadowDemo/model/do"
 	"shadowDemo/service"
 
@@ -12,72 +11,9 @@ import (
 )
 
 func upmsMenuRouter(r *gin.RouterGroup) {
-	// swagger:route POST /upmsMenu upmsMenu createUpmsMenu
+	// swagger:route POST /menu menu createMenu
 	//
-	// 创建;
-	//
-	//     Consumes:
-	//     - application/json
-	//
-	//     Produces:
-	//     - application/json
-	//
-	//     Schemes: http
-	//
-	//     Security:
-	//       api_key:
-	//       oauth: read, write
-	//
-	//     Responses:
-	//       200: genericSuccess
-	//       default: genericError
-	r.POST("/upmsMenu", createUpmsMenu)
-
-	// swagger:route POST /upmsMenus upmsMenu searchUpmsMenu
-	//
-	// 查询列表;
-	//
-	//     Consumes:
-	//     - application/json
-	//
-	//     Produces:
-	//     - application/json
-	//
-	//     Schemes: http
-	//
-	//     Security:
-	//       api_key:
-	//       oauth: read, write
-	//
-	//     Responses:
-	//       200: searchUpmsMenuResponse
-	//       default: genericError
-	r.POST("/upmsMenus", SearchUpmsMenu)
-
-	// swagger:route GET /upmsMenu upmsMenu getUpmsMenu
-	//
-	// 详情;
-	//
-	//     Consumes:
-	//     - application/json
-	//
-	//     Produces:
-	//     - application/json
-	//
-	//     Schemes: http
-	//
-	//     Security:
-	//       api_key:
-	//       oauth: read, write
-	//
-	//     Responses:
-	//       200: getUpmsMenuResponse
-	//       default: genericError
-	r.GET("/upmsMenu", GetUpmsMenu)
-
-	// swagger:route PUT /upmsMenu upmsMenu updateUpmsMenu
-	//
-	// 修改;
+	// 创建菜单;
 	//
 	//     Consumes:
 	//     - application/json
@@ -94,11 +30,53 @@ func upmsMenuRouter(r *gin.RouterGroup) {
 	//     Responses:
 	//       200: genericSuccess
 	//       default: genericError
-	r.PUT("/upmsMenu", UpdateUpmsMenu)
+	r.POST("/menu", createMenu)
 
-	// swagger:route DELETE /upmsMenu upmsMenu deleteUpmsMenu
+	// swagger:route GET /menu menu getMenuByID
 	//
-	// 删除;
+	// 菜单查询通过id;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: getMenuByIDResult
+	//       default: genericError
+	r.GET("/menu", getMenuByID)
+
+	// swagger:route GET /menus menu searchMenus
+	//
+	// 查询所有菜单;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: searchMenuResponse
+	//       default: genericError
+	r.GET("/menus", searchMenus)
+
+	// swagger:route PUT /menu menu UpdateMenu
+	//
+	// 菜单修改;
 	//
 	//     Consumes:
 	//     - application/json
@@ -115,81 +93,82 @@ func upmsMenuRouter(r *gin.RouterGroup) {
 	//     Responses:
 	//       200: genericSuccess
 	//       default: genericError
-	r.DELETE("/upmsMenu", DeleteUpmsMenu)
+	r.PUT("/menu", UpdateMenu)
 
+	// swagger:route DELETE /menu menu deleteMenu
+	//
+	// 删除菜单。删除父节点，则她的子节点一起删除：
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: genericSuccess
+	//       default: genericError
+	r.DELETE("/menu", deleteMenu)
 }
 
-func createUpmsMenu(c *gin.Context) {
-	upmsMenuService := service.NewUpmsMenuService()
-	request := &vo.CreateUpmsMenuRequest{}
-	err := c.Bind(&request.Body)
-	if err != nil {
-		newClientError(c, err)
-		return
-	}
-	profile := c.MustGet(PROFILE).(middleware.Profile)
-	upmsMenu := &do.UpmsMenu{
-		CreatedBy:  profile.Account,
-	}
-
-	err = upmsMenuService.CreateUpmsMenu(upmsMenu)
-	if err != nil {
-		newServerError(c, err)
-		return
-	}
-
-	newSuccess(c)
-}
-
-func SearchUpmsMenu(c *gin.Context) {
-	upmsMenuService := service.NewUpmsMenuService()
-	request := &vo.SearchUpmsMenuRequest{}
-	err := c.Bind(&request.Body)
-	if err != nil {
-		newClientError(c, err)
-		return
-	}
-
-	condition := &dao.UpmsMenuSearchCondition{
-		IDS:             request.Body.IDS,
-		CreateStartTime: request.Body.CreateStartTime,
-		CreateEndTime:   request.Body.CreateEndTime,
-	}
-
-	result, count, err := upmsMenuService.SearchUpmsMenuPaging(condition, request.Body.PageNum, request.Body.PageSize)
-	if err != nil {
-		newServerError(c, err)
-		return
-	}
-
-	c.JSON(http.StatusOK, vo.SearchUpmsMenuResponseBody{
-		Result: result,
-		Count:  count,
-	})
-}
-
-func GetUpmsMenu(c *gin.Context) {
+func getMenuByID(c *gin.Context) {
+	menuService := service.NewUpmsMenuService()
 	id, err := bindID(c)
 	if err != nil {
 		newClientError(c, err)
 		return
 	}
-	upmsMenuService := service.NewUpmsMenuService()
-	upmsMenu, err := upmsMenuService.GetUpmsMenuByID(id)
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	Menu, err := menuService.GetUpmsMenuByID(profile.CurrentSite, id)
 	if err != nil {
 		newServerError(c, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, vo.GetUpmsMenuResponseBody{
-		Result: *upmsMenu,
+	c.JSON(http.StatusOK, vo.GetMenuByIDResponse{
+		Result: Menu,
+	})
+
+}
+
+func searchMenus(c *gin.Context) {
+	MenuService := service.NewUpmsMenuService()
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	searchResult, err := MenuService.SearchUpmsMenu(profile.CurrentSite)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, vo.SearchMenuBody{
+		Result: searchResult,
 	})
 }
 
-func UpdateUpmsMenu(c *gin.Context) {
-	upmsMenuService := service.NewUpmsMenuService()
+func deleteMenu(c *gin.Context) {
+	MenuService := service.NewUpmsMenuService()
+	request := &vo.DeleteMenuRequest{}
+	if err := c.Bind(&request.Body); err != nil {
+		newClientError(c, err)
+		return
+	}
 	profile := c.MustGet(PROFILE).(middleware.Profile)
-	request := &vo.UpdateUpmsMenuRequest{}
+
+	if err := MenuService.DeleteMenu(profile.CurrentSite, request.Body.IDset); err != nil {
+		newServerError(c, err)
+		return
+	}
+	newSuccess(c)
+}
+
+func UpdateMenu(c *gin.Context) {
+	MenuService := service.NewUpmsMenuService()
+	request := &vo.UpdateMenuRequest{}
 	id, err := bindID(c)
 	if err != nil {
 		newClientError(c, err)
@@ -199,29 +178,54 @@ func UpdateUpmsMenu(c *gin.Context) {
 		newClientError(c, err)
 		return
 	}
-	attrs := map[string]interface{}{}
-	//修改人
-	attrs["created_by"] = profile.Account
-
-	err = upmsMenuService.UpdateUpmsMenu(id, attrs)
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	Menu, err := MenuService.GetUpmsMenuByID(profile.CurrentSite, id)
 	if err != nil {
 		newServerError(c, err)
 		return
 	}
+	Menu.Name = request.Body.Name
+	Menu.URL = request.Body.URL
+	Menu.Method = request.Body.Method
+	Menu.PNodeID = request.Body.PNodeID
+	Menu.NodeID = request.Body.NodeID
+	Menu.Sequence = request.Body.Sequence
+	Menu.NodeType = request.Body.NodeType
+	Menu.Level = request.Body.Level
+	Menu.Path = request.Body.Path
+
+	if err := MenuService.UpdateMenu(profile.CurrentSite, &Menu); err != nil {
+		newServerError(c, err)
+		return
+	}
+
 	newSuccess(c)
 }
 
-func DeleteUpmsMenu(c *gin.Context) {
-	upmsMenuService := service.NewUpmsMenuService()
-	id, err := bindID(c)
-	if err != nil {
+func createMenu(c *gin.Context) {
+	MenuService := service.NewUpmsMenuService()
+	request := &vo.CreateMenuRequest{}
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+
+	if err := c.Bind(&request.Body); err != nil {
 		newClientError(c, err)
 		return
 	}
-	err = upmsMenuService.DeleteUpmsMenuByID(id)
-	if err != nil {
+
+	if err := MenuService.CreateUpmsMenu(profile.CurrentSite, &do.UpmsMenu{
+		Name:     request.Body.Name,
+		URL:      request.Body.URL,
+		Method:   request.Body.Method,
+		PNodeID:  request.Body.PNodeID,
+		NodeID:   request.Body.NodeID,
+		Sequence: request.Body.Sequence,
+		NodeType: request.Body.NodeType,
+		Level:    request.Body.Level,
+		Path:     request.Body.Path,
+	}); err != nil {
 		newServerError(c, err)
 		return
 	}
+
 	newSuccess(c)
 }

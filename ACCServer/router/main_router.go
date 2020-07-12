@@ -15,12 +15,12 @@ import (
 	"net/http"
 	"shadowDemo/middleware"
 	"shadowDemo/model"
-	"shadowDemo/model/do"
 	"shadowDemo/service"
 	"shadowDemo/zframework/middleware/concurrentlimit"
 	"shadowDemo/zframework/middleware/ginlogrus"
 	"shadowDemo/zframework/middleware/i18nmiddleware"
 	"shadowDemo/zframework/middleware/securitymiddleware"
+	modelc "shadowDemo/zframework/model"
 	"shadowDemo/zframework/security"
 	"shadowDemo/zframework/server"
 	"shadowDemo/zframework/utils"
@@ -58,7 +58,7 @@ func MainRouter() http.Handler {
 	//登录用户校验（冻结，密码错误）
 	engine.Use(securitymiddleware.UsernamePasswordLoginFilter(loginPath))
 	//获取当前用户信息
-	//engine.Use(middleware.ProfileResolver(setPlayer))
+	//engine.Use(middleware.ProfileResolver(setAdmin))
 	//谷歌验证码
 	engine.Use(middleware.GoogleTokenValidator(loginPath, getProfileID))
 	//普通验证码
@@ -76,6 +76,8 @@ func MainRouter() http.Handler {
 	progConfigRouter(router)
 	aPIAccessReqLogRouter(router)
 	aPIAccessResLogRouter(router)
+	upmsMenuRouter(router)
+	upmsRoleRouter(router)
 	return engine
 }
 
@@ -86,32 +88,28 @@ func getProfileID(c *gin.Context) (profileID int64, site string) {
 	return
 }
 
-func setPlayer(c *gin.Context) {
+func setAdmin(c *gin.Context) {
 	token := c.MustGet(security.SHADOW_SECURITY_TOKEN).(*security.TUsernamePasswordAuthenticationToken)
 	lang := c.MustGet("Lang").(*language.Language)
-	playerService := service.NewPlayerService()
-	player := do.Player{}
-	if players, err := playerService.GetPlayerByLoginName(token.GetPrincipal()); err != nil {
+	adminService := service.NewUpmsAdminService()
+	admin, err := adminService.GetUpmsAdminByLoginName(token.GetPrincipal())
+	if err != nil {
 		c.Error(err)
 		return
-	} else {
-		player.ID = players.ID
-		player.NickName = players.NickName
-		player.Account = players.Account
-		player.State = players.State
 	}
 	ip := utils.GetRealIp(c.Request)
 	profile := middleware.Profile{
-		ID:       player.ID,
-		Username: player.NickName,
-		Account:  player.Account,
-		UserType: model.UserTypePlayer,
-		//Locked:   player.State == model.Frozen,
-		//State:    player.State,
-		IP:      ip,
-		DevInfo: utils.GetDeviceInfo(c.Request),
-		Lang:    lang.String(),
-		Host:    server.ServerConfigInstance().AdminServer.Host,
+		ID:          admin.ID,
+		Username:    admin.RealName,
+		Account:     admin.Account,
+		UserType:    model.UserTypePlayer,
+		Locked:      admin.State == modelc.Frozen,
+		State:       admin.State,
+		IP:          ip,
+		DevInfo:     utils.GetDeviceInfo(c.Request),
+		Lang:        lang.String(),
+		Host:        server.ServerConfigInstance().AdminServer.Host,
+		CurrentSite: server.ServerConfigInstance().AdminServer.CurrentSite,
 	}
 	c.Set(PROFILE, profile)
 

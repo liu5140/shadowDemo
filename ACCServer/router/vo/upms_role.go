@@ -1,80 +1,78 @@
 package vo
 
 import (
+	"github.com/shopspring/decimal"
 	"shadowDemo/model/do"
-	"time"
 )
 
-// swagger:parameters upmsRole createUpmsRole
-type CreateUpmsRoleRequest struct {
+// swagger:parameters role getPermissionByID
+type RoleID struct {
+	//in:query
+	ID string `json:"ID"`
+}
+
+// swagger:parameters role createRole
+type CreateRoleRequest struct {
 	//in:body
 	Body struct {
-		
+		//名称
+		Name string `binding:"required"`
+		//角色编码
+		Code string `binding:"required"`
+		//单次可操作最大金额
+		MaxAmount decimal.Decimal `sql:"type:decimal(20,4);"`
 	}
 }
 
-// swagger:parameters upmsRole searchUpmsRole
-type SearchUpmsRoleRequest struct {
+// swagger:parameters role createPermission
+type CreateRolePermissionRequest struct {
+	//in:query
+	ID int64 `binding:"required"`
 	//in:body
-	Body struct {
-		//id
-		IDS []int64
-		//创建开始时间
-		CreateStartTime time.Time
-		//创建截止时间
-		CreateEndTime time.Time
-		//页码
-		PagingRequest
-	}
+	//菜单
+	Body []do.UpmsMenu
 }
 
-//查询列表
-//swagger:response searchUpmsRoleResponse
-type SearchUpmsRoleResponse struct {
-	//in: body
-	Result SearchUpmsRoleResponseBody
-}
-
-// swagger:model
-type SearchUpmsRoleResponseBody struct {
-	Result []do.UpmsRole
-	Count  int
-}
-
-//详情入参
-// swagger:parameters upmsRole getUpmsRole
-type GetUpmsRoleRequest struct {
-	//in: query
-	ID int64
-}
-
-//详情出参
-// swagger:response getUpmsRoleResponse
-type GetUpmsRoleResponse struct {
-	//in: body
-	Result GetUpmsRoleResponseBody
-}
-
-//swagger:model
-type GetUpmsRoleResponseBody struct {
-	Result do.UpmsRole
-}
-
-//修改
-// swagger:parameters upmsRole updateUpmsRole
-type UpdateUpmsRoleRequest struct {
+// swagger:parameters role UpdateRole
+type UpdateRoleRequest struct {
 	// in:query
-	//id主键
 	ID int64
 	// in:body
 	Body struct {
-		
+		//名字
+		Name string
+		//单次可操作最大金额
+		MaxAmount decimal.Decimal `sql:"type:decimal(20,4);"`
 	}
 }
 
-//删除
-// swagger:parameters upmsRole deleteUpmsRole
-type DeleteUpmsRoleRequest struct {
-	//in: query
+// swagger:parameters role deleteRole
+type DeleteRoleRequest struct {
+	// in:query
 	ID int64
+}
+
+//角色信息
+// swagger:response searchRoleResponse
+type SearchRoleResponse struct {
+	// in: body
+	Result SearchRoleBody
+}
+
+//swagger:model
+type SearchRoleBody struct {
+	Data []*do.UpmsRole
+}
+
+// swagger:parameters role getRoleByID
+type GetRoleByIDRequst struct {
+	//in: query
+	ID int64 `binding:"required"`
+}
+
+//菜单信息
+// swagger:response searchRoleMenuResponse
+type SearchRoleMenuResponse struct {
+	// in: body
+	Result []*do.UpmsMenu
 }

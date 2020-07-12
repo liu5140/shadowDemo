@@ -16,5 +16,8 @@
   },
   "key_current_password_verify_error": {
     "other": "当前密码输入不正确"
+  },
+  "key_role_exist": {
+  "other": "角色已经存在"
   }
 }

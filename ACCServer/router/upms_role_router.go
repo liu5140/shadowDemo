@@ -4,80 +4,17 @@ import (
 	"net/http"
 	"shadowDemo/ACCServer/router/vo"
 	"shadowDemo/middleware"
-	"shadowDemo/model/dao"
 	"shadowDemo/model/do"
 	"shadowDemo/service"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
 func upmsRoleRouter(r *gin.RouterGroup) {
-	// swagger:route POST /upmsRole upmsRole createUpmsRole
+	// swagger:route POST /role role createRole
 	//
-	// 创建;
-	//
-	//     Consumes:
-	//     - application/json
-	//
-	//     Produces:
-	//     - application/json
-	//
-	//     Schemes: http
-	//
-	//     Security:
-	//       api_key:
-	//       oauth: read, write
-	//
-	//     Responses:
-	//       200: genericSuccess
-	//       default: genericError
-	r.POST("/upmsRole", createUpmsRole)
-
-	// swagger:route POST /upmsRoles upmsRole searchUpmsRole
-	//
-	// 查询列表;
-	//
-	//     Consumes:
-	//     - application/json
-	//
-	//     Produces:
-	//     - application/json
-	//
-	//     Schemes: http
-	//
-	//     Security:
-	//       api_key:
-	//       oauth: read, write
-	//
-	//     Responses:
-	//       200: searchUpmsRoleResponse
-	//       default: genericError
-	r.POST("/upmsRoles", SearchUpmsRole)
-
-	// swagger:route GET /upmsRole upmsRole getUpmsRole
-	//
-	// 详情;
-	//
-	//     Consumes:
-	//     - application/json
-	//
-	//     Produces:
-	//     - application/json
-	//
-	//     Schemes: http
-	//
-	//     Security:
-	//       api_key:
-	//       oauth: read, write
-	//
-	//     Responses:
-	//       200: getUpmsRoleResponse
-	//       default: genericError
-	r.GET("/upmsRole", GetUpmsRole)
-
-	// swagger:route PUT /upmsRole upmsRole updateUpmsRole
-	//
-	// 修改;
+	// 创建角色;
 	//
 	//     Consumes:
 	//     - application/json
@@ -94,11 +31,53 @@ func upmsRoleRouter(r *gin.RouterGroup) {
 	//     Responses:
 	//       200: genericSuccess
 	//       default: genericError
-	r.PUT("/upmsRole", UpdateUpmsRole)
+	r.POST("/role", createRole)
 
-	// swagger:route DELETE /upmsRole upmsRole deleteUpmsRole
+	// swagger:route GET /roles role searchRoles
 	//
-	// 删除;
+	// 查询所有角色;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: searchRoleResponse
+	//       default: genericError
+	r.GET("/roles", searchRoles)
+
+	// swagger:route GET /role/permissions role getPermissionByID
+	//
+	// 查询角色对应的权限;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: searchRoleMenuResponse
+	//       default: genericError
+	r.GET("/role/permissions", getPermissionByID)
+
+	// swagger:route POST /role/permission role createPermission
+	//
+	// 修改角色权限，添加权限也用;
 	//
 	//     Consumes:
 	//     - application/json
@@ -115,81 +94,91 @@ func upmsRoleRouter(r *gin.RouterGroup) {
 	//     Responses:
 	//       200: genericSuccess
 	//       default: genericError
-	r.DELETE("/upmsRole", DeleteUpmsRole)
+	r.POST("/role/permission", createPermission)
 
+	// swagger:route PUT /role role UpdateRole
+	//
+	// 修改角色，只能修改name;
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: genericSuccess
+	//       default: genericError
+	r.PUT("/role", updateRole)
+
+	// swagger:route DELETE /role role deleteRole
+	//
+	// 删除角色：
+	//
+	//     Consumes:
+	//     - application/json
+	//
+	//     Produces:
+	//     - application/json
+	//
+	//     Schemes: http
+	//
+	//     Security:
+	//       api_key:
+	//       oauth: read, write
+	//
+	//     Responses:
+	//       200: genericSuccess
+	//       default: genericError
+	r.DELETE("/role", deleteRole)
 }
 
-func createUpmsRole(c *gin.Context) {
-	upmsRoleService := service.NewUpmsRoleService()
-	request := &vo.CreateUpmsRoleRequest{}
-	err := c.Bind(&request.Body)
-	if err != nil {
-		newClientError(c, err)
-		return
-	}
+func searchRoles(c *gin.Context) {
+	roleService := service.NewUpmsRoleService()
 	profile := c.MustGet(PROFILE).(middleware.Profile)
-	upmsRole := &do.UpmsRole{
-		CreatedBy:  profile.Account,
-	}
-
-	err = upmsRoleService.CreateUpmsRole(upmsRole)
+	searchResult, err := roleService.SearchRole(profile.CurrentSite)
 	if err != nil {
 		newServerError(c, err)
 		return
 	}
 
-	newSuccess(c)
-}
-
-func SearchUpmsRole(c *gin.Context) {
-	upmsRoleService := service.NewUpmsRoleService()
-	request := &vo.SearchUpmsRoleRequest{}
-	err := c.Bind(&request.Body)
-	if err != nil {
-		newClientError(c, err)
-		return
-	}
-
-	condition := &dao.UpmsRoleSearchCondition{
-		IDS:             request.Body.IDS,
-		CreateStartTime: request.Body.CreateStartTime,
-		CreateEndTime:   request.Body.CreateEndTime,
-	}
-
-	result, count, err := upmsRoleService.SearchUpmsRolePaging(condition, request.Body.PageNum, request.Body.PageSize)
-	if err != nil {
-		newServerError(c, err)
-		return
-	}
-
-	c.JSON(http.StatusOK, vo.SearchUpmsRoleResponseBody{
-		Result: result,
-		Count:  count,
+	c.JSON(http.StatusOK, vo.SearchRoleBody{
+		Data: searchResult,
 	})
 }
 
-func GetUpmsRole(c *gin.Context) {
+func deleteRole(c *gin.Context) {
+	roleService := service.NewUpmsRoleService()
+	profile := c.MustGet(PROFILE).(middleware.Profile)
 	id, err := bindID(c)
 	if err != nil {
 		newClientError(c, err)
 		return
 	}
-	upmsRoleService := service.NewUpmsRoleService()
-	upmsRole, err := upmsRoleService.GetUpmsRoleByID(id)
+
+	role, err := roleService.GetRoleByID(profile.CurrentSite, id)
 	if err != nil {
 		newServerError(c, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, vo.GetUpmsRoleResponseBody{
-		Result: *upmsRole,
-	})
+	if err := roleService.DeleteRole(profile.CurrentSite, &role); err != nil {
+		newServerError(c, err)
+		return
+	}
+	newSuccess(c)
 }
 
-func UpdateUpmsRole(c *gin.Context) {
-	upmsRoleService := service.NewUpmsRoleService()
+func updateRole(c *gin.Context) {
+	roleService := service.NewUpmsRoleService()
 	profile := c.MustGet(PROFILE).(middleware.Profile)
-	request := &vo.UpdateUpmsRoleRequest{}
+	request := &vo.UpdateRoleRequest{}
 	id, err := bindID(c)
 	if err != nil {
 		newClientError(c, err)
@@ -199,27 +188,84 @@ func UpdateUpmsRole(c *gin.Context) {
 		newClientError(c, err)
 		return
 	}
-	attrs := map[string]interface{}{}
-	//修改人
-	attrs["created_by"] = profile.Account
 
-	err = upmsRoleService.UpdateUpmsRole(id, attrs)
+	role, err := roleService.GetRoleByID(profile.CurrentSite, id)
 	if err != nil {
 		newServerError(c, err)
 		return
 	}
+	if request.Body.Name != "" {
+		role.Name = request.Body.Name
+	}
+	if err := roleService.UpdateRole(profile.CurrentSite, &role); err != nil {
+		newServerError(c, err)
+		return
+	}
+
 	newSuccess(c)
 }
 
-func DeleteUpmsRole(c *gin.Context) {
-	upmsRoleService := service.NewUpmsRoleService()
+func createRole(c *gin.Context) {
+	roleService := service.NewUpmsRoleService()
+	request := &vo.CreateRoleRequest{}
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	if err := c.Bind(&request.Body); err != nil {
+		newClientError(c, err)
+		return
+	}
+	if err := roleService.CreateRole(profile.CurrentSite, &do.UpmsRole{
+		Name:      strings.TrimSpace(request.Body.Name),
+		Code:      request.Body.Code,
+	}); err != nil {
+		newServerError(c, err)
+		return
+	}
+
+	newSuccess(c)
+}
+
+func getPermissionByID(c *gin.Context) {
+	roleService := service.NewUpmsRoleService()
+	profile := c.MustGet(PROFILE).(middleware.Profile)
 	id, err := bindID(c)
 	if err != nil {
 		newClientError(c, err)
 		return
 	}
-	err = upmsRoleService.DeleteUpmsRoleByID(id)
+	role, err := roleService.GetRoleByID(profile.CurrentSite, id)
 	if err != nil {
+		newServerError(c, err)
+		return
+	}
+	result, err := roleService.SelectPermission(profile.CurrentSite, &role)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, vo.SearchRoleMenuResponse{
+		Result: result,
+	})
+}
+
+func createPermission(c *gin.Context) {
+	roleService := service.NewUpmsRoleService()
+	request := &vo.CreateRolePermissionRequest{}
+	profile := c.MustGet(PROFILE).(middleware.Profile)
+	id, err := bindID(c)
+	if err != nil {
+		newClientError(c, err)
+		return
+	}
+	if err := c.Bind(&request.Body); err != nil {
+		newClientError(c, err)
+		return
+	}
+	role, err := roleService.GetRoleByID(profile.CurrentSite, id)
+	if err != nil {
+		newServerError(c, err)
+		return
+	}
+	if err := roleService.SetPermission(profile.CurrentSite, &role, request.Body); err != nil {
 		newServerError(c, err)
 		return
 	}

@@ -8,6 +8,8 @@ import (
 	"shadowDemo/service/dto"
 	"shadowDemo/zframework/bizerr"
 	modelc "shadowDemo/zframework/model"
+	shadowsecurity "shadowDemo/zframework/security"
+	"strings"
 	"sync"
 
 	"github.com/sirupsen/logrus"
@@ -78,10 +80,12 @@ func (adminManager *UpmsAdminService) GetUpmsAdminByLoginName(login string) (adm
 	if login == "" {
 		return do.UpmsAdmin{}, errors.New("no login name")
 	}
+
 	adminDao := model.GetModel().UpmsAdminDao
 	result := do.UpmsAdmin{
 		Account: login,
 	}
+
 	Log.Infoln("GetUpmsAdminByLoginName", login)
 	err = adminDao.FindOne(&result)
 	if err != nil {
@@ -174,14 +178,14 @@ func (adminService UpmsAdminService) UpdateUpmsAdminPwd(userid int64, usertype d
 	} else if password.UpdatePwdType == do.UpdatePwdTypeSecure {
 		oldPwd = admin.SecurePassword
 	}
+
 	if password.UpdatePwdType == do.UpdatePwdTypeLogin && oldPwd == "" {
 		return bizerr.GenErr("key_alert_nologin_password_error")
 	} else if password.UpdatePwdType == do.UpdatePwdTypeSecure && oldPwd == "" {
-		Log.Error(err)
 		return bizerr.GenErr("key_alert_nosecure_password_error")
 	}
+
 	if !passwordEncoder.Matches(password.OldPwd, oldPwd) {
-		Log.Error(err)
 		return bizerr.GenErr("key_current_password_verify_error")
 	}
 	var param string
@@ -195,4 +199,92 @@ func (adminService UpmsAdminService) UpdateUpmsAdminPwd(userid int64, usertype d
 		return
 	}
 	return
+}
+
+func (service UpmsAdminService) CreateSubAccount(subAccount *do.UpmsAdmin, site string) (err error) {
+	adminDao := model.GetModel().UpmsAdminDao
+	subAccount.Account = strings.TrimSpace(subAccount.Account)
+	if ok := adminDao.Found(&do.UpmsAdmin{
+		Account: subAccount.Account,
+	}); ok {
+		Log.Error("account is exist")
+		return bizerr.GenErr("key_account_exist")
+
+	}
+	passwordEncoder := shadowsecurity.PasswordEncoderInstance(shadowsecurity.PASSWORD_ENCODER)
+	loginPassword := passwordEncoder.Encode(strings.TrimSpace(subAccount.LoginPassword))
+	securePassword := passwordEncoder.Encode(strings.TrimSpace(subAccount.SecurePassword))
+
+	subAccount.LoginPassword = loginPassword
+	subAccount.SecurePassword = securePassword
+	subAccount.ID = GenAdminID()
+	subAccount.State = modelc.Normal
+	subAccount.UserType = do.UserTypeAdmin
+
+	//创建admin
+	err = adminDao.Create(subAccount)
+	if err != nil {
+		Log.Error(err)
+		return err
+	}
+
+	//为该子账号指定角色
+	roles := strings.Split(subAccount.Role, ";")
+	for _, v := range roles {
+		if ok := shadowsecurity.GetCasbinEnforcer().AddGroupingPolicy(fmt.Sprintf("%d", subAccount.ID), v, site); !ok {
+			err = errors.New("failed to assign role to admin in db")
+			Log.WithField("Account", subAccount.Account).Error(err)
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (service UpmsAdminService) UpdateRole(subAccounts do.UpmsAdmin) (err error) {
+	sdao := model.GetModel().UpmsAdminDao
+	id := subAccounts.ID
+	role := v.Role
+	if id == 0 {
+		Log.Error("id is nil")
+		return errors.New("id is nil")
+	}
+	old := &do.UpmsAdmin{ID: id}
+	err = sdao.FindOne(old)
+	if err != nil {
+		Log.Error(err)
+		return err
+	}
+	//删除修改前的角色
+	oldRoles := strings.Split(old.Role, ";")
+	for _, role := range oldRoles {
+		//删除已有角色
+		if ok := shadowsecurity.GetCasbinEnforcer().RemoveGroupingPolicy(fmt.Sprintf("%d", v.ID), role, "core"); !ok {
+			err = errors.New("failed to delete role to admin in db")
+			Log.WithField("Account", old.Account).Error(err)
+			return err
+		}
+	}
+
+	err = sdao.Updates(id, map[string]interface{}{"role": role, "role_id": v.RoleID})
+	if err != nil {
+		Log.Error(err)
+		return err
+	}
+	//为该子账号指定角色
+	roles := strings.Split(v.Role, ";")
+	for _, role := range roles {
+		if ok := shadowsecurity.GetCasbinEnforcer().AddGroupingPolicy(fmt.Sprintf("%d", v.ID), role, "core"); !ok {
+			err = errors.New("failed to assign role to admin in db")
+			Log.WithField("Account", v.Account).Error(err)
+			return err
+		}
+	}
+	// err = shadowsecurity.GetCasbinEnforcer().LoadPolicy()
+	// if err != nil{
+	// 	Log.Error(err)
+	// 	return
+	// }
+
+	return nil
 }
