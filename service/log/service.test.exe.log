@@ -1,0 +1,54 @@
+time="2020-07-16 11:08:03.565" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-07-16 11:08:03.578" level=info msg="======初始化server.json========  (server.init.0:init.go:23)"
+time="2020-07-16 11:08:03.578" level=error msg="server configure init failed, file doesn't exist" file="config/server.json" ~LineNum=" (server.LoadWithFile:server_configure_manager.go:45)"
+time="2020-07-16 11:08:03.578" level=panic msg="open config/server.json: The system cannot find the path specified. (server.LoadWithFile:server_configure_manager.go:46)
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0xb74b60, 0xc00021b2c0, 0x1)
+	c:/go/src/runtime/debug/stack.go:24 +0xa4
+shadowDemo/zframework/logger.(*Logger).logErrorPrint(0xc000006038, 0xc000107730, 0xc0001077c8, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:189 +0x13a
+shadowDemo/zframework/logger.(*Logger).Panic(0xc000006038, 0xc0001077c8, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:250 +0x76
+shadowDemo/zframework/server.LoadWithFile(0xb39160, 0xc000228000, 0xc685f7, 0x12)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:46 +0x41f
+shadowDemo/zframework/server.newServerConfigure(0xc000006038)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:31 +0xa4
+shadowDemo/zframework/server.init.0()
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/init.go:24 +0xa7
+"
+time="2020-07-16 11:12:43.836" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-07-16 11:12:43.849" level=info msg="======初始化server.json========  (server.init.0:init.go:23)"
+time="2020-07-16 11:12:43.849" level=error msg="server configure init failed, file doesn't exist" file="config/server.json" ~LineNum=" (server.LoadWithFile:server_configure_manager.go:45)"
+time="2020-07-16 11:12:43.849" level=panic msg="open config/server.json: The system cannot find the path specified. (server.LoadWithFile:server_configure_manager.go:46)
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0xb74b60, 0xc00021b2c0, 0x1)
+	c:/go/src/runtime/debug/stack.go:24 +0xa4
+shadowDemo/zframework/logger.(*Logger).logErrorPrint(0xc000006038, 0xc000107730, 0xc0001077c8, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:189 +0x13a
+shadowDemo/zframework/logger.(*Logger).Panic(0xc000006038, 0xc0001077c8, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:250 +0x76
+shadowDemo/zframework/server.LoadWithFile(0xb39160, 0xc000228000, 0xc685f7, 0x12)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:46 +0x41f
+shadowDemo/zframework/server.newServerConfigure(0xc000006038)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:31 +0xa4
+shadowDemo/zframework/server.init.0()
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/init.go:24 +0xa7
+"
+time="2020-07-16 11:15:55.812" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-07-16 11:15:55.831" level=info msg="======初始化server.json========  (server.init.0:init.go:23)"
+time="2020-07-16 11:15:55.831" level=error msg="server configure init failed, file doesn't exist" file="config/server.json" ~LineNum=" (server.LoadWithFile:server_configure_manager.go:45)"
+time="2020-07-16 11:15:55.831" level=panic msg="open config/server.json: The system cannot find the path specified. (server.LoadWithFile:server_configure_manager.go:46)
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0xb74b60, 0xc00020c980, 0x1)
+	c:/go/src/runtime/debug/stack.go:24 +0xa4
+shadowDemo/zframework/logger.(*Logger).logErrorPrint(0xc000006038, 0xc000107730, 0xc0001077c8, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:189 +0x13a
+shadowDemo/zframework/logger.(*Logger).Panic(0xc000006038, 0xc0001077c8, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:250 +0x76
+shadowDemo/zframework/server.LoadWithFile(0xb39160, 0xc00021a000, 0xc685f7, 0x12)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:46 +0x41f
+shadowDemo/zframework/server.newServerConfigure(0xc000006038)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:31 +0xa4
+shadowDemo/zframework/server.init.0()
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/init.go:24 +0xa7
+"

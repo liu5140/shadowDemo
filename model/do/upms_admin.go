@@ -26,12 +26,12 @@ type UpmsAdmin struct {
 	SecurePassword string
 	//真实姓名
 	RealName string
-	//角色名称(子账号展示用)
-	RoleName string
-	//角色
-	Role string
 	//角色ID可以多个，用逗号分隔
 	RoleID string
+	//角色
+	RoleCode string
+	//角色名称
+	RoleName string
 	//可以访问的siteID，总站长不受此限制
 	SiteID string
 	//备注

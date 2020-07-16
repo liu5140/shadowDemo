@@ -16,4 +16,5 @@ const (
 
 func init() {
 	Log = logger.InitLog()
+	Log.Infoln("==============datasource=======================")
 }

@@ -19,5 +19,8 @@
   },
   "key_role_exist": {
   "other": "角色已经存在"
+  },
+  "key_roles_not_exist": {
+  "other": "角色不存在"
   }
 }

@@ -1,0 +1,36 @@
+time="2020-07-16 11:16:50.029" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-07-16 11:16:50.045" level=info msg="======初始化server.json========  (server.init.0:init.go:23)"
+time="2020-07-16 11:16:50.045" level=error msg="server configure init failed, file doesn't exist" file="config/server.json" ~LineNum=" (server.LoadWithFile:server_configure_manager.go:45)"
+time="2020-07-16 11:16:50.045" level=panic msg="open config/server.json: The system cannot find the path specified. (server.LoadWithFile:server_configure_manager.go:46)
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x0, 0x0, 0x0)
+	c:/go/src/runtime/debug/stack.go:24 +0xa8
+shadowDemo/zframework/logger.(*Logger).logErrorPrint(0xc0000c0028, 0xc0000bd508, 0xc0000bd608, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:189 +0x29e
+shadowDemo/zframework/logger.(*Logger).Panic(0xc0000c0028, 0xc0000bd608, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:250 +0x86
+shadowDemo/zframework/server.LoadWithFile(0xdda360, 0xc0001f2000, 0xf0a32d, 0x12)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:46 +0x2da
+shadowDemo/zframework/server.newServerConfigure(0x0)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:31 +0xf2
+shadowDemo/zframework/server.init.0()
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/init.go:24 +0xec
+"
+time="2020-07-16 11:17:09.273" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-07-16 11:17:09.289" level=info msg="======初始化server.json========  (server.init.0:init.go:23)"
+time="2020-07-16 11:17:09.289" level=error msg="server configure init failed, file doesn't exist" file="config/server.json" ~LineNum=" (server.LoadWithFile:server_configure_manager.go:45)"
+time="2020-07-16 11:17:09.289" level=panic msg="open config/server.json: The system cannot find the path specified. (server.LoadWithFile:server_configure_manager.go:46)
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x0, 0x0, 0x0)
+	c:/go/src/runtime/debug/stack.go:24 +0xa8
+shadowDemo/zframework/logger.(*Logger).logErrorPrint(0xc000006038, 0xc000107508, 0xc000107608, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:189 +0x29e
+shadowDemo/zframework/logger.(*Logger).Panic(0xc000006038, 0xc000107608, 0x1, 0x1)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/logger/logger.go:250 +0x86
+shadowDemo/zframework/server.LoadWithFile(0xdda360, 0xc00022a000, 0xf0a32d, 0x12)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:46 +0x2da
+shadowDemo/zframework/server.newServerConfigure(0x0)
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/server_configure_manager.go:31 +0xf2
+shadowDemo/zframework/server.init.0()
+	c:/Users/user/go/src/github.com/liu5140/shadowDemo/zframework/server/init.go:24 +0xec
+"
